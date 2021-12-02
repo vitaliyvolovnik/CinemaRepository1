@@ -25,7 +25,12 @@ namespace DLL.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            
+            modelBuilder.Entity<Session>().HasOne(x => x.Film);
+            modelBuilder.Entity<Session>().HasOne(x=>x.Hall).WithMany(x=>x.Sessions);
+            modelBuilder.Entity<Session>().HasMany(x => x.Bookings).WithOne(x => x.Session);
+            modelBuilder.Entity<BookingLog>().HasOne(x => x.Booking).WithOne(x=>x.BookingLog);
+            modelBuilder.Entity<BookingLog>().HasOne(x => x.Employee).WithMany(x => x.BookingLogs);
+            modelBuilder.Entity<BuyFilm>().HasOne(x => x.Film).WithOne(x=>x.BFilms);
         }
     }
 }

@@ -10,5 +10,6 @@ namespace DLL.Models
         public int Row { get; set; }
         public int SeatInRow { get; set; }
         public bool IsBooking { get; set; }
+        public BookingLog BookingLog { get; set; }
     }
 }

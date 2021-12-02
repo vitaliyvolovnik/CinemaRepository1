@@ -12,6 +12,7 @@ namespace DLL.Models
         public DateTime BookingTime { get; set; }
         public Employee Employee { get; set; }
         public Booking Booking { get; set; }
+        
 
 
     }
