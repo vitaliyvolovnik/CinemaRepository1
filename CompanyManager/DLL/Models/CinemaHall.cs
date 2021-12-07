@@ -9,9 +9,11 @@ namespace DLL.Models
 
         public int Id { get; set; }
         public List<Session> Sessions { get; set; }
-        public int CountOfSeats { get; set; }
         public int Rows { get; set; }
         public int SeatsInRow { get; set; }
-        
+        public string ScreenDiagonal { get; set; }
+        public List<Seat> Seats { get; set; }
+
+
     }
 }

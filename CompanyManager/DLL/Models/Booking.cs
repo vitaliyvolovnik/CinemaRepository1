@@ -6,10 +6,13 @@ namespace DLL.Models
 {
     public class Booking
     {
+        public int Id { get; set; }
         public Session Session { get; set; }
-        public int Row { get; set; }
-        public int SeatInRow { get; set; }
         public bool IsBooking { get; set; }
-        public BookingLog BookingLog { get; set; }
+        public Employee Employee { get; set; }
+        public string ClientPhoneNumber { get; set; }
+        public bool IsPaid { get; set; }
+        public Seat Seat { get; set; }
+
     }
 }

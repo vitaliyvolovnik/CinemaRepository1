@@ -10,7 +10,9 @@ namespace DLL.Models
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Role { get; set; }
-        public List<BookingLog> BookingLogs { get; set; }
+        public List<Booking> Bookings { get; set; }
         public DateTime DayOfBirdh { get; set; }
+        public string Password { get; set; }
+        public string Mail { get; set; }
     }
 }

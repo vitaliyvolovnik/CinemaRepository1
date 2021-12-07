@@ -10,12 +10,11 @@ namespace DLL.Models
         public List<Booking> Bookings { get; set; }
         public CinemaHall Hall { get; set; }    
         public Film Film { get; set; }
-        public float FirstTiketPrice { get; set; }
-        public float SecondTiketPrice { get; set; }
-        public float ThirdTiketPrice { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
-        
+        public float TiketPrice { get; set; }
+        public float PremiumTiketPrice { get; set; }
+
 
     }
 }
