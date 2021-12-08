@@ -32,8 +32,53 @@ namespace DLL.Repository
                 .ToListAsync()
                 .ConfigureAwait(false);
         }
+        public  async Task ChangeUserAsync(Booking booking)
+        {
+            var book = this.Entities
+                .Where(x => x.Seat.Row == booking.Seat.Row && x.Seat.SeatInRow == booking.Seat.SeatInRow && x.Session.Id == booking.Session.Id)
+                .Include(x => x.Session)
+                .Include(x => x.Seat)
+                .Include(x => x.Employee).First();
+            if (book.IsCansel)
+            {
+                book.IsCansel = false;
+                book.IsPaid = booking.IsPaid;
+                book.IsBooking = true;
+                book.ClientPhoneNumber = booking.ClientPhoneNumber;
+                await this.SaveChangesAsync();
+                
+            }
+            
+        }
+        public async Task<bool> CanselBookingAsync(Booking booking)
+        {
+            var book = this.Entities
+               .Where(x => x.Seat.Row == booking.Seat.Row && x.Seat.SeatInRow == booking.Seat.SeatInRow && x.Session.Id == booking.Session.Id)
+               .Include(x => x.Session)
+               .Include(x => x.Seat)
+               .Include(x => x.Employee).First();
+            if(book!=null)
+            {
+                book.IsCansel = true;
+                await this.SaveChangesAsync();
+                return true;
+            }
+            return false;
+        }
+        public async Task<bool> PaidBookingAsync(Booking booking)
+        {
+            var book = this.Entities
+               .Where(x => x.Seat.Row == booking.Seat.Row && x.Seat.SeatInRow == booking.Seat.SeatInRow && x.Session.Id == booking.Session.Id)
+               .Include(x => x.Session).First();
+            if (book != null)
+            {
+                book.IsPaid = true;
+                await this.SaveChangesAsync();
+                return true;
+            }
+            return false;
+        }
 
-       
     }
     
 }

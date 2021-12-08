@@ -11,21 +11,21 @@ using System.Threading.Tasks;
 
 namespace DLL.Repository
 {
-    public class SeatRepository: BaseRepository<Seat>
+    public class SeatRepository : BaseRepository<Seat>
     {
         public SeatRepository(CinemaContext context) : base(context) { }
         public override async Task<IEnumerable<Seat>> GetAllAsync()
         {
             return await this.Entities
-                .Include(x=>x.Hall)
+                .Include(x => x.Hall)
                 .ToArrayAsync()
                 .ConfigureAwait(false);
         }
-        public override async Task<IEnumerable<Seat>> FindBuConditionAsync(Expression<Func<Seat, bool>> prediat)
+        public override async Task<IEnumerable<Seat>> FindBuConditionAsync(Expression<Func<Seat, bool>> predicate)
         {
             return await this.Entities
+                .Where(predicate)
                 .Include(x => x.Hall)
-                .Where(prediat)
                 .ToListAsync()
                 .ConfigureAwait(false);
         }

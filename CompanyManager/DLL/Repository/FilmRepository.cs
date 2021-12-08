@@ -11,6 +11,6 @@ namespace DLL.Repository
 {
     public class FilmRepository:BaseRepository<Film>
     {
-        public FilmRepository(CinemaContext f) : base(f) { }
+        public FilmRepository(CinemaContext context) : base(context) { }
     }
 }

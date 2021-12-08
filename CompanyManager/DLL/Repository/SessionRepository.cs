@@ -13,14 +13,14 @@ namespace DLL.Repository
 {
     public class SessionRepositoryv : BaseRepository<Session>
     {
-        public SessionRepositoryv(CinemaContext f) : base(f) { }
-        public override async Task<IEnumerable<Session>> FindBuConditionAsync(Expression<Func<Session, bool>> prediat)
+        public SessionRepositoryv(CinemaContext context) : base(context) { }
+        public override async Task<IEnumerable<Session>> FindBuConditionAsync(Expression<Func<Session, bool>> predicate)
         {
             return await this.Entities
-                .Include(x=>x.Bookings)
-                .Include(x=>x.Hall)
-                .Include(x=>x.Film)
-                .Where(prediat)
+                .Where(predicate)
+                .Include(x => x.Bookings)
+                .Include(x => x.Hall)
+                .Include(x => x.Film)
                 .ToListAsync()
                 .ConfigureAwait(false);
         }

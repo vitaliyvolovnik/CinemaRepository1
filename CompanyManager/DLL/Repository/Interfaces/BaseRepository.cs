@@ -21,16 +21,19 @@ namespace DLL.Repository.Interfaces
         public virtual async Task CreateAsync(T obj)
         {
             await Entities.AddAsync(obj).ConfigureAwait(false);
+            await _cinemaContext.SaveChangesAsync();
         }
-
-        public virtual async Task<IEnumerable<T>> FindBuConditionAsync(Expression<Func<T, bool>> prediat)
+        public virtual async Task<IEnumerable<T>> FindBuConditionAsync(Expression<Func<T, bool>> predicate)
         {
-            return await this.Entities.Where(prediat).ToListAsync().ConfigureAwait(false); 
+            return await this.Entities.Where(predicate).ToListAsync().ConfigureAwait(false); 
         }
-
         public virtual async Task<IEnumerable<T>> GetAllAsync()
         {
             return await this.Entities.ToListAsync().ConfigureAwait(false);
+        }
+        public virtual async Task SaveChangesAsync()
+        {
+            await _cinemaContext.SaveChangesAsync().ConfigureAwait(false);
         }
     }
 }

@@ -31,7 +31,7 @@ namespace CompanyManager
         private void ConfigureService(ServiceCollection collectoin)
         {
             collectoin.AddTransient<MainWindow>();
-            
+            BLL.ConfigureBLL.ConfigereService(collectoin);
         }
     }
 }

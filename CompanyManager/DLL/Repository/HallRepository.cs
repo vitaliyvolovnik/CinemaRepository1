@@ -18,12 +18,12 @@ namespace DLL.Repository
                 .ToArrayAsync()
                 .ConfigureAwait(false);
         }
-        public override async Task<IEnumerable<CinemaHall>> FindBuConditionAsync(Expression<Func<CinemaHall, bool>> prediat)
+        public override async Task<IEnumerable<CinemaHall>> FindBuConditionAsync(Expression<Func<CinemaHall, bool>> predicate)
         {
             return await this.Entities
+                .Where(predicate)
                 .Include(x => x.Seats)
                 .Include(x => x.Sessions)
-                .Where(prediat)
                 .ToListAsync()
                 .ConfigureAwait(false);
         }

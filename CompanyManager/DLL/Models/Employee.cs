@@ -14,5 +14,6 @@ namespace DLL.Models
         public DateTime DayOfBirdh { get; set; }
         public string Password { get; set; }
         public string Mail { get; set; }
+        public bool isFire { get; set; }
     }
 }

@@ -13,12 +13,12 @@ namespace DLL.Repository
 {
     public class EmployeeRepository : BaseRepository<Employee>
     {
-        public EmployeeRepository(CinemaContext f) : base(f) { }
-        public override async Task<IEnumerable<Employee>> FindBuConditionAsync(Expression<Func<Employee, bool>> prediat)
+        public EmployeeRepository(CinemaContext context) : base(context) { }
+        public override async Task<IEnumerable<Employee>> FindBuConditionAsync(Expression<Func<Employee, bool>> predicate)
         {
             return await this.Entities
+               .Where(predicate)
                .Include(x => x.Bookings)
-               .Where(prediat)
                .ToListAsync()
                .ConfigureAwait(false);
 
