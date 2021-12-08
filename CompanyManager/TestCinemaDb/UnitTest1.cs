@@ -14,7 +14,7 @@ namespace TestCinemaDb
         public void Test1()
         {
             var optionsBuilder = new DbContextOptionsBuilder<CinemaContext>();
-            var option = optionsBuilder.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=CinemaTEst111Db;Integrated Security=True;Connect Timeout=30").Options;
+            var option = optionsBuilder.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=CinemaTEst2Db;Integrated Security=True;Connect Timeout=30").Options;
             try
             {
                 context = new(option);
@@ -43,6 +43,7 @@ namespace TestCinemaDb
                 ScreenDiagonal="23.4",
                 Rows=5,
                 SeatsInRow=6,
+                HallNumber=1
             });
             context.SaveChanges();
             var film = context.Halls.First(x => x.Rows == 5) ;
