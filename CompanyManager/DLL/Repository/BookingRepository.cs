@@ -32,49 +32,56 @@ namespace DLL.Repository
                 .ToListAsync()
                 .ConfigureAwait(false);
         }
-        public  async Task ChangeUserAsync(Booking booking)
+        public  async Task<bool> ChangeUserAsync(Booking booking)
         {
             var book = this.Entities
                 .Where(x => x.Seat.Row == booking.Seat.Row && x.Seat.SeatInRow == booking.Seat.SeatInRow && x.Session.Id == booking.Session.Id)
-                .Include(x => x.Session)
-                .Include(x => x.Seat)
-                .Include(x => x.Employee).First();
-            if (book.IsCansel)
+                .Include(x => x.Employee);
+            if (book.Count() > 0)
             {
-                book.IsCansel = false;
-                book.IsPaid = booking.IsPaid;
-                book.IsBooking = true;
-                book.ClientPhoneNumber = booking.ClientPhoneNumber;
-                await this.SaveChangesAsync();
-                
+                var bb = book.First();
+                if (bb.IsCansel)
+                {
+                    bb.IsCansel = false;
+                    bb.IsPaid = booking.IsPaid;
+                    bb.IsBooking = true;
+                    bb.Employee = booking.Employee;
+                    bb.ClientPhoneNumber = booking.ClientPhoneNumber;
+                    await this.SaveChangesAsync();
+                    return true;
+                }
             }
-            
+            return false;
         }
         public async Task<bool> CanselBookingAsync(Booking booking)
         {
             var book = this.Entities
-               .Where(x => x.Seat.Row == booking.Seat.Row && x.Seat.SeatInRow == booking.Seat.SeatInRow && x.Session.Id == booking.Session.Id)
-               .Include(x => x.Session)
-               .Include(x => x.Seat)
-               .Include(x => x.Employee).First();
-            if(book!=null)
+               .Where(x => x.Seat.Row == booking.Seat.Row && x.Seat.SeatInRow == booking.Seat.SeatInRow && x.Session.Id == booking.Session.Id);
+            if (book.Count() > 0)
             {
-                book.IsCansel = true;
-                await this.SaveChangesAsync();
-                return true;
+                var bb = book.First();
+                if (!bb.IsCansel)
+                {
+                    bb.IsCansel = true;
+                    await this.SaveChangesAsync();
+                    return true;
+                }
             }
             return false;
         }
         public async Task<bool> PaidBookingAsync(Booking booking)
         {
             var book = this.Entities
-               .Where(x => x.Seat.Row == booking.Seat.Row && x.Seat.SeatInRow == booking.Seat.SeatInRow && x.Session.Id == booking.Session.Id)
-               .Include(x => x.Session).First();
-            if (book != null)
+               .Where(x => x.Seat.Row == booking.Seat.Row && x.Seat.SeatInRow == booking.Seat.SeatInRow && x.Session.Id == booking.Session.Id);
+            if (book.Count() > 0)
             {
-                book.IsPaid = true;
-                await this.SaveChangesAsync();
-                return true;
+                var bb = book.First();
+                if (!bb.IsPaid)
+                {
+                    bb.IsPaid = true;
+                    await this.SaveChangesAsync();
+                    return true;
+                }
             }
             return false;
         }

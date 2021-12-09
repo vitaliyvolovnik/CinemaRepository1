@@ -11,9 +11,9 @@ using System.Threading.Tasks;
 
 namespace DLL.Repository
 {
-    public class SessionRepositoryv : BaseRepository<Session>
+    public class SessionRepository : BaseRepository<Session>
     {
-        public SessionRepositoryv(CinemaContext context) : base(context) { }
+        public SessionRepository(CinemaContext context) : base(context) { }
         public override async Task<IEnumerable<Session>> FindBuConditionAsync(Expression<Func<Session, bool>> predicate)
         {
             return await this.Entities

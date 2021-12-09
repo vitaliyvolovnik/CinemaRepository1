@@ -30,5 +30,19 @@ namespace DLL.Repository
                 .ToListAsync()
                 .ConfigureAwait(false);
         }
+        public async Task<bool>FireAsync(Employee employee)
+        {
+            var emp = this.Entities.Where(x => x.Name == employee.Name && x.Surname == employee.Surname && x.Mail == employee.Mail);
+            if(emp.Count()==1)
+            {
+                var e = emp.First();
+                if (!e.isFire)
+                {
+                    e.isFire = true;
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }

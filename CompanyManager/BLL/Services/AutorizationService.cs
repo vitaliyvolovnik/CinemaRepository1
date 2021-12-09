@@ -17,10 +17,9 @@ namespace BLL.Services
         }
         public async Task<Employee> Autorization(string email,string password)
         {
-            var employee = await employeeRepository.FindBuConditionAsync(x => x.Mail == email && x.Password == password);
-            if (employee == null) return null;
-            var emp = employee as List<Employee>;
-            return emp[0];
+            
+                return (await employeeRepository.FindBuConditionAsync(x => x.Mail == email && x.Password == password))?.First();
+           
         }
         
     }

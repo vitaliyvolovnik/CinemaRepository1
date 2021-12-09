@@ -15,22 +15,24 @@ namespace BLL.Services
         {
             this.employeeRepository = Repository;
         }
-        public async Task<Employee> AddWorkerAsync(Employee RegEmployee)
-        {
-            var employee = await employeeRepository.FindBuConditionAsync(x => x.Mail == RegEmployee.Mail);
-            if (employee != null) return null;
-            await employeeRepository.CreateAsync(RegEmployee);
-            return RegEmployee;
-
-        }
         public async Task<List<Employee>> GetAllAsync()
         {
             return (List<Employee>)await employeeRepository.GetAllAsync();
         }
         public async Task<List<Employee>> GetAllWhoWorkAsync()
         {
-            return (List<Employee>)await employeeRepository.FindBuConditionAsync(x=>x.isFire);
+            return (List<Employee>)await employeeRepository.FindBuConditionAsync(x=>!x.isFire);
         }
-        public async Task<bool> Retire()
+        public async Task<List<Employee>> GetEmployeeAsync(string name,string surname)
+        {
+            if (string.IsNullOrWhiteSpace(name)) return null;
+            return (List<Employee>)await employeeRepository.FindBuConditionAsync(x => x.Name == name&&x.Surname==surname);
+        }
+        public async Task<bool> FireAsync(Employee employee)
+        {
+            if (employee == null)
+                return false;
+            return await this.employeeRepository.FireAsync(employee);
+        }
     }
 }
