@@ -49,6 +49,17 @@ namespace DLL.Context
                 .HasOne(x => x.Hall)
                 .WithMany(x => x.Seats)
                 .OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<Employee>().HasData(new Employee() 
+            { 
+                Id=1,
+                Name="Vitaliy",
+                Surname = "Volovnik",
+                Role ="Administrator",
+                DayOfBirdh= new DateTime(2004,5,5),
+                isFire=false,
+                Password= "Admin",
+                Mail = "ViatliyAdmin@gmail.com"
+            });
 
         }
     }

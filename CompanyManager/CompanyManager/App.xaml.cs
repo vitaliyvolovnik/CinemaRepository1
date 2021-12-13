@@ -16,7 +16,7 @@ namespace CompanyManager
     /// </summary>
     public partial class App : Application
     {
-        private IServiceProvider provider;  
+        static public IServiceProvider provider;  
         public App()
         {
             ServiceCollection collection = new();
@@ -25,7 +25,8 @@ namespace CompanyManager
         }
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            var wind = (AutorizationWindow)provider.GetService<AutorizationWindow>();
+            var wind = provider.GetService<AutorizationWindow>();
+
             wind.Show();
             
             

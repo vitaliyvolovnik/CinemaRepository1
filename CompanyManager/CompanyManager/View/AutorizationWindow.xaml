@@ -6,12 +6,16 @@
         xmlns:local="clr-namespace:CompanyManager.View"
         xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="AutorizationWindow" Height="250" Width="300">
+        Title="AutorizationWindow" Height="180" Width="270">
     <StackPanel Orientation="Vertical" Background="#262626">
         <Label FontSize="25" HorizontalAlignment="Center" Foreground="#abaaaa" FontWeight="Bold">Autorization</Label>
         <TextBox Name="MailTextBox" md:HintAssist.Hint="Email address" Style="{StaticResource MaterialDesignOutlinedTextBox}"
                  Padding="3" Margin="4" BorderBrush="#abaaaa" Foreground="#abaaaa" FontSize="15"
                  md:HintAssist.Background="#262626" md:HintAssist.Foreground="#abaaaa"></TextBox>
-        
+        <PasswordBox Style="{StaticResource MaterialDesignOutlinedPasswordBox}" Name="PasswordPasswordBox"
+                     Padding="3" Margin="4" BorderBrush="#abaaaa" Foreground="#abaaaa" FontSize="15" 
+                     md:HintAssist.Hint="Password"
+                     md:HintAssist.Background="#262626" md:HintAssist.Foreground="#abaaaa"></PasswordBox>
+        <Button Margin="0,4,25,0" Name="LoginBtn" HorizontalAlignment="Right" Width="100" Click="LoginBtn_Click">Login</Button>
     </StackPanel>
 </Window>

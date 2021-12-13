@@ -15,7 +15,7 @@ namespace BLL
     {
         public static void ConfigereService(ServiceCollection collection)
         {
-            collection.AddDbContext<CinemaContext>(o=>o.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=CinemaTestDb;Integrated Security=True;Connect Timeout=30;"));
+            collection.AddDbContext<CinemaContext>(o=>o.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=CinemaDbb;Integrated Security=True;Connect Timeout=30;"));
             collection.AddTransient<BookingRepository>();
             collection.AddTransient<EmployeeRepository>();
             collection.AddTransient<FilmRepository>();

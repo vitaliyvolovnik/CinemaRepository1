@@ -1,4 +1,8 @@
-﻿using System;
+﻿using BLL.Services;
+using CompanyManager.View;
+using DLL.Models;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +23,24 @@ namespace CompanyManager.View
     /// </summary>
     public partial class AutorizationWindow : Window
     {
-        public AutorizationWindow()
+        AutorizationService autorizationService;
+        public AutorizationWindow(AutorizationService service)
         {
             InitializeComponent();
+            this.autorizationService = service;
+        }
+
+        private async void LoginBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var res = await autorizationService.AutorizationAsync(MailTextBox.Text, PasswordPasswordBox.Password);
+            if (res == null) return;
+            if (res.isFire) return;
+            this.Close();
+            var wind = App.provider.GetService<MainWindow>();
+            wind.Employee = res;
+            wind.Show();
+
+
         }
     }
 }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CompanyManager.View"
         xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
-        mc:Ignorable="d"
+        mc:Ignorable="d" Loaded="Window_Loaded"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -30,7 +30,7 @@
                 <StackPanel Orientation="Horizontal"
                     VerticalAlignment="Bottom" HorizontalAlignment="Left">
                     <Label Margin="5,2,2,2" Foreground="#abaaaa" FontWeight="Bold"
-                           Name="NAmeTExtBox" FontSize="20">Vitaliy</Label>
+                           Name="NameTExtBox" FontSize="20">Vitaliy</Label>
                     <Label Margin="5,2,2,2" Foreground="#abaaaa" FontWeight="Bold"
                            Name="SurnameTextBox" FontSize="20">Volovnik</Label>
                 </StackPanel>

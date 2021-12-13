@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DLL.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,6 +20,11 @@ namespace CompanyManager.View
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Employee employee;
+        public Employee Employee
+        {
+            set { if (employee == null) employee = value; }
+        }
         public MainWindow()
         {
             InitializeComponent();
@@ -35,6 +41,13 @@ namespace CompanyManager.View
             var panel = (StackPanel)sender;
             var grid = (Grid)panel.Children[0];
             grid.Width = 7;
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            NameTExtBox.Content = employee.Name;
+            SurnameTextBox.Content = employee.Surname;
+            PostTextBox.Content = employee.Role;
         }
     }
 }
