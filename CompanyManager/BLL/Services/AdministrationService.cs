@@ -12,10 +12,12 @@ namespace BLL.Services
     {
         public EmployeeRepository employeeRepository;
         HallRepository hallRepository;
-        public AdministrationService(EmployeeRepository Repository,HallRepository hallRepository)
+        SessionRepository sessionRepository;
+        public AdministrationService(EmployeeRepository Repository, HallRepository hallRepository, SessionRepository sessionRepository)
         {
             this.employeeRepository = Repository;
             this.hallRepository = hallRepository;
+            this.sessionRepository = sessionRepository;
         }
         public async Task<Employee> AddWorkerAsync(Employee RegEmployee)
         {
@@ -23,22 +25,36 @@ namespace BLL.Services
             var employee = await employeeRepository.FindBuConditionAsync(x => x.Mail == RegEmployee.Mail);
             if (employee.Count() == 1) return null;
             await employeeRepository.CreateAsync(RegEmployee);
-            return ((List<Employee>)await employeeRepository.FindBuConditionAsync(x => x.Mail == RegEmployee.Mail)).First();
+            return (await employeeRepository.FindBuConditionAsync(x => x.Mail == RegEmployee.Mail))?.First();
 
         }
         public async Task<CinemaHall> AddHallAsync(CinemaHall hall)
         {
-            var halls = (List<CinemaHall>)await hallRepository.FindBuConditionAsync(x => x.HallNumber == hall.HallNumber);
+            var halls = (await hallRepository.FindBuConditionAsync(x => x.HallNumber == hall.HallNumber)).ToList();
             if (halls.Count > 0) return null;
             try
             {
                 await hallRepository.CreateAsync(hall);
-                return ((List<CinemaHall>)await hallRepository.FindBuConditionAsync(x => x.HallNumber == hall.HallNumber)).First();
+                return (await hallRepository.FindBuConditionAsync(x => x.HallNumber == hall.HallNumber))?.First();
             }
             catch
             {
                 return null;
             }
         }
+        public async Task<float> GetProfit(Session session)
+        {
+            var sum = 0f;
+            var sess = (await sessionRepository.FindBuConditionAsync(x => x.Id== session.Id)).First();
+            foreach (var item in sess.Bookings)
+            {
+                if ((!item.IsCansel)&&item.IsPaid) {
+                    if (item.Seat.Type == "Premium") sum += sess.PremiumTiketPrice; 
+                    else sum += sess.TiketPrice;
+                }
+            }
+            return sum;
+        }
+        
     }
 }

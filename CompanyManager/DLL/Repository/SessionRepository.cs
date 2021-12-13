@@ -18,7 +18,7 @@ namespace DLL.Repository
         {
             return await this.Entities
                 .Where(predicate)
-                .Include(x => x.Bookings)
+                .Include(x => x.Bookings).ThenInclude(x=>x.Seat)
                 .Include(x => x.Hall)
                 .Include(x => x.Film)
                 .ToListAsync()
@@ -27,7 +27,7 @@ namespace DLL.Repository
         public override  async Task<IEnumerable<Session>> GetAllAsync()
         {
             return await this.Entities
-                .Include(x => x.Bookings)
+                .Include(x => x.Bookings).ThenInclude(x => x.Seat)
                 .Include(x => x.Hall)
                 .Include(x => x.Film)
                 .ToListAsync()

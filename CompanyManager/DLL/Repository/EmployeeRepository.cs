@@ -30,19 +30,34 @@ namespace DLL.Repository
                 .ToListAsync()
                 .ConfigureAwait(false);
         }
-        public async Task<bool>FireAsync(Employee employee)
+        public async Task<bool> FireAsync(Employee employee)
         {
             var emp = this.Entities.Where(x => x.Name == employee.Name && x.Surname == employee.Surname && x.Mail == employee.Mail);
-            if(emp.Count()==1)
+            if (emp.Count() == 1)
             {
                 var e = emp.First();
                 if (!e.isFire)
                 {
                     e.isFire = true;
+                    await SaveChangesAsync();
                     return true;
                 }
             }
             return false;
         }
+        public async Task<bool> ChangePasswordAsync(string email, string password, string newPassowrd)
+        {
+            var emp = this.Entities.Where(x => x.Mail == email && x.Password == password);
+            if (emp.Count() == 1)
+            {
+                var employee = emp.First();
+                employee.Password = newPassowrd;
+                await SaveChangesAsync();
+                return true;
+            }
+            return false;
+        }
+
     }
+
 }

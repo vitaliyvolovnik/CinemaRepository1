@@ -1,0 +1,17 @@
+﻿<Window x:Class="CompanyManager.View.AutorizationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CompanyManager.View"
+        xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="AutorizationWindow" Height="250" Width="300">
+    <StackPanel Orientation="Vertical" Background="#262626">
+        <Label FontSize="25" HorizontalAlignment="Center" Foreground="#abaaaa" FontWeight="Bold">Autorization</Label>
+        <TextBox Name="MailTextBox" md:HintAssist.Hint="Email address" Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                 Padding="3" Margin="4" BorderBrush="#abaaaa" Foreground="#abaaaa" FontSize="15"
+                 md:HintAssist.Background="#262626" md:HintAssist.Foreground="#abaaaa"></TextBox>
+        
+    </StackPanel>
+</Window>

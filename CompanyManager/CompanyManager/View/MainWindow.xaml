@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CompanyManager.View"
+        xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
@@ -13,16 +14,84 @@
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0" Background="#222222">
             <Grid.RowDefinitions>
-                <RowDefinition Height="100"></RowDefinition>
+                <RowDefinition Height="120"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
                 <RowDefinition Height="50"></RowDefinition>
                 <RowDefinition Height="50"></RowDefinition>
                 <RowDefinition Height="50"></RowDefinition>
                 <RowDefinition ></RowDefinition>
             </Grid.RowDefinitions>
-            <StackPanel Orientation="Horizontal" Grid.Row="1" Height="50">
+            <Grid Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Horizontal"
+                    VerticalAlignment="Bottom" HorizontalAlignment="Left">
+                    <Label Margin="5,2,2,2" Foreground="#abaaaa" FontWeight="Bold"
+                           Name="NAmeTExtBox" FontSize="20">Vitaliy</Label>
+                    <Label Margin="5,2,2,2" Foreground="#abaaaa" FontWeight="Bold"
+                           Name="SurnameTextBox" FontSize="20">Volovnik</Label>
+                </StackPanel>
+                <Label Margin="2" Grid.Row="1" Foreground="#abaaaa"
+                       FontSize="15" Name="PostTextBox">Administrator</Label>
+               
+            </Grid>
+            <StackPanel Orientation="Horizontal" Grid.Row="1" Height="50" Width="240"
+                        MouseLeave="Button_MouseLeave" MouseEnter="Button_MouseEnter">
                 <Grid Width="0" Background="#0686bf" Name="Bhrid1"></Grid>
                 <Button Background="{x:Null}" BorderThickness="0" 
-                        MouseLeave="Button_MouseLeave" MouseEnter="Button_MouseEnter">jfkaldsjldas</Button>
+                        Height="50" Width="240">
+                    <StackPanel Orientation="Horizontal" Width="220">
+                        <md:PackIcon VerticalAlignment="Center" Kind="Ticket"></md:PackIcon>
+                        <Label FontSize="15" Foreground="#abaaaa">Tickets</Label>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Row="2" Height="50" Width="240"
+                        MouseLeave="Button_MouseLeave" MouseEnter="Button_MouseEnter">
+                <Grid Width="0" Background="#0686bf" Name="Bhrid2"></Grid>
+                <Button Background="{x:Null}" BorderThickness="0" 
+                        Height="50" Width="240" >
+                    <StackPanel Orientation="Horizontal" Width="220">
+                        <md:PackIcon VerticalAlignment="Center" Kind="VideoFilm"></md:PackIcon>
+                        <Label FontSize="15" Foreground="#abaaaa">Session</Label>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Row="3" Height="50" Width="240"
+                        MouseLeave="Button_MouseLeave" MouseEnter="Button_MouseEnter">
+                <Grid Width="0" Background="#0686bf" Name="Bhrid3"></Grid>
+                <Button Background="{x:Null}" BorderThickness="0" 
+                        Height="50" Width="240" >
+                    <StackPanel Orientation="Horizontal" Width="220">
+                        <md:PackIcon VerticalAlignment="Center" Kind="Cinema"></md:PackIcon>
+                        <Label FontSize="15" Foreground="#abaaaa">Halls</Label>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Row="4" Height="50" Width="240"
+                        MouseLeave="Button_MouseLeave" MouseEnter="Button_MouseEnter">
+                <Grid Width="0" Background="#0686bf" Name="Bhrid4"></Grid>
+                <Button Background="{x:Null}" BorderThickness="0" 
+                        Height="50" Width="240" Tag="Bhrid4" >
+                    <StackPanel Orientation="Horizontal" Width="220">
+                        <md:PackIcon VerticalAlignment="Center" Kind="User"></md:PackIcon>
+                        <Label FontSize="15" Foreground="#abaaaa">Employees</Label>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Row="5" Height="50" Width="240"
+                        MouseLeave="Button_MouseLeave" MouseEnter="Button_MouseEnter">
+                <Grid Width="0" Background="#0686bf" Name="Bhrid5"></Grid>
+                <Button Background="{x:Null}" BorderThickness="0" 
+                        Height="50" Width="240" Tag="Bhrid4" >
+                    <StackPanel Orientation="Horizontal" Width="220">
+                        <md:PackIcon VerticalAlignment="Center" Kind="Movie"></md:PackIcon>
+                        <Label FontSize="15" Foreground="#abaaaa">Films</Label>
+                    </StackPanel>
+                </Button>
             </StackPanel>
         </Grid>
         <Grid Grid.Column="1">

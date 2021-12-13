@@ -15,11 +15,16 @@ namespace BLL.Services
         {
             this.employeeRepository = Repository;
         }
-        public async Task<Employee> Autorization(string email,string password)
+        public async Task<Employee> AutorizationAsync(string email,string password)
         {
             
                 return (await employeeRepository.FindBuConditionAsync(x => x.Mail == email && x.Password == password))?.First();
            
+        }
+        public async Task<bool> ChangePasswordAsync(string email,string password,string newPassowrd)
+        {
+            if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password) || string.IsNullOrWhiteSpace(newPassowrd)) return false;
+            return await employeeRepository.ChangePasswordAsync(email, password, newPassowrd);
         }
         
     }

@@ -23,8 +23,8 @@ namespace BLL.Services
             try
             {
                 await sessionRepository.CreateAsync(session);
-                return ((List<Session>)await sessionRepository.FindBuConditionAsync(x=>x.StartTime==session.StartTime&&
-                x.Hall.HallNumber==session.Hall.HallNumber)).First();
+                return (await sessionRepository.FindBuConditionAsync(x=>x.StartTime==session.StartTime&&
+                x.Hall.HallNumber==session.Hall.HallNumber))?.First();
             }
             catch
             {
@@ -37,11 +37,11 @@ namespace BLL.Services
         }
         public async Task<List<Session>> GetAllSessionsAsync()
         {
-            return (List<Session>)await sessionRepository.GetAllAsync();
+            return (await sessionRepository.GetAllAsync())?.ToList();
         }
         public async Task<List<Session>> GetAllNotFinishedSessionsAsync()
         {
-            return (List<Session>)await sessionRepository.FindBuConditionAsync(x=>x.EndTime>DateTime.Now);
+            return (await sessionRepository.FindBuConditionAsync(x=>x.EndTime>DateTime.Now))?.ToList();
         }
     }
 }

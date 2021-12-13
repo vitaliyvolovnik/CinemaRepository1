@@ -61,7 +61,8 @@ namespace DLL.Repository
             {
                 var bb = book.First();
                 if (!bb.IsCansel)
-                {
+                { 
+                    bb.IsBooking = false;
                     bb.IsCansel = true;
                     await this.SaveChangesAsync();
                     return true;

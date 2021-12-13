@@ -25,17 +25,19 @@ namespace CompanyManager
         }
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            var wind = (MainWindow)provider.GetService<MainWindow>();
+            var wind = (AutorizationWindow)provider.GetService<AutorizationWindow>();
             wind.Show();
             
             
         }
         private void ConfigureService(ServiceCollection collectoin)
         {
+            collectoin.AddTransient<AutorizationWindow>();
             collectoin.AddTransient<MainWindow>();
             collectoin.AddTransient<TicketService>();
             collectoin.AddTransient<EmployeeService>();
             collectoin.AddTransient<AutorizationService>();
+            collectoin.AddTransient<AdministrationService>();
             collectoin.AddTransient<SessionHallService>();
 
             BLL.ConfigureBLL.ConfigereService(collectoin);

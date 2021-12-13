@@ -17,16 +17,16 @@ namespace BLL.Services
         }
         public async Task<List<Employee>> GetAllAsync()
         {
-            return (List<Employee>)await employeeRepository.GetAllAsync();
+            return (await employeeRepository.GetAllAsync()).ToList();
         }
         public async Task<List<Employee>> GetAllWhoWorkAsync()
         {
-            return (List<Employee>)await employeeRepository.FindBuConditionAsync(x=>!x.isFire);
+            return (await employeeRepository.FindBuConditionAsync(x=>!x.isFire))?.ToList();
         }
         public async Task<List<Employee>> GetEmployeeAsync(string name,string surname)
         {
             if (string.IsNullOrWhiteSpace(name)) return null;
-            return (List<Employee>)await employeeRepository.FindBuConditionAsync(x => x.Name == name&&x.Surname==surname);
+            return (await employeeRepository.FindBuConditionAsync(x => x.Name == name&&x.Surname==surname))?.ToList();
         }
         public async Task<bool> FireAsync(Employee employee)
         {

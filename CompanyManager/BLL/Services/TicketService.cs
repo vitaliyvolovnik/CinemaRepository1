@@ -19,7 +19,7 @@ namespace BLL.Services
         {
             var list = (await bookingRepository.FindBuConditionAsync(x => x.Seat.Row == booking.Seat.Row &&
                                                         x.Seat.SeatInRow == booking.Seat.SeatInRow &&
-                                                        x.Session.Id == booking.Session.Id)) as List<Booking>;
+                                                        x.Session.Id == booking.Session.Id)).ToList();
             if (list.Count == 1)
             {
                 return await bookingRepository.ChangeUserAsync(booking);
@@ -39,11 +39,11 @@ namespace BLL.Services
         }
         public async Task<List<Booking>> ReturnBySessionTicket(Session session)
         {
-            return (List<Booking>)(await bookingRepository.FindBuConditionAsync(x => x.Session.Id == session.Id));
+            return (await bookingRepository.FindBuConditionAsync(x => x.Session.Id == session.Id))?.ToList();
         }
         public async Task<List<Booking>> ReturnByClientNumberTicket(string Number, Session session)
         {
-            return (List<Booking>)(await bookingRepository.FindBuConditionAsync(x => x.Session.Id == session.Id && x.ClientPhoneNumber == Number));
+            return (await bookingRepository.FindBuConditionAsync(x => x.Session.Id == session.Id && x.ClientPhoneNumber == Number))?.ToList();
         }
 
 
