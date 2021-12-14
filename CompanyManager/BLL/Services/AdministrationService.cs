@@ -44,9 +44,10 @@ namespace BLL.Services
                 return null;
             }
         }
-        public async void AddSeatAsync(Seat seat)
+        public async Task AddSeatAsync(Seat seat)
         {
-           await seatRepository.CreateAsync(seat);
+            
+                await seatRepository.CreateAsync(seat); 
         }
         public async Task<float> GetProfit(Session session)
         {

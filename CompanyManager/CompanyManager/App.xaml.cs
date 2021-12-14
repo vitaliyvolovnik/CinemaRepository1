@@ -28,10 +28,11 @@ namespace CompanyManager
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             var wind = provider.GetService<MainWindow>();
-
             wind.Show();
-            
-            
+
+
+
+
         }
         private void ConfigureService(ServiceCollection collectoin)
         {

@@ -17,14 +17,30 @@ namespace CompanyManager.ViewModel
         private readonly AdministrationService _administrationService;
         private readonly SessionHallService _sessionHallService;
         private CinemaHall addHall;
-        public string premiumRows;
+        private string premiumRows = "";
 
         private ObservableCollection<CinemaHall> halls;
-       /* public HallsViewModel(AdministrationService administration, SessionHallService sessionHall) : base()
+        public  HallsViewModel(AdministrationService administration, SessionHallService sessionHall) : base()
         {
             _administrationService = administration;
             _sessionHallService = sessionHall;
-        }*/
+            LoadHalls();
+
+        }
+        public async Task LoadHalls()
+        {
+            var list = await _sessionHallService.GetAllHallsAsync();
+            halls = new ObservableCollection<CinemaHall>(list);
+        }
+        public string PremiumRows
+        {
+            get { return premiumRows; }
+            set
+            {
+                premiumRows = value;
+                base.OnPropertyChanged("PremiumRows");
+            }
+        }
         public CinemaHall AddHall
         {
             get
@@ -42,14 +58,10 @@ namespace CompanyManager.ViewModel
         {
             get
             {
-                if (Halls == null) Halls = new ();
-                return Halls;
+                if (halls == null) halls = new();
+                return halls;
             }
-            set
-            {
-                Halls = value;
-                base.OnPropertyChanged("Halls");
-            }
+           
         }
         private ICommand addHallCommand;
         public ICommand AddHallCommand
@@ -60,22 +72,22 @@ namespace CompanyManager.ViewModel
                 return addHallCommand;
             }
         }
-
         private async void AddHallExecute(object obj)
         {
+            await LoadHalls();
             var res = await _administrationService.AddHallAsync(AddHall);
             if (res == null) return;
             List<int> premiums = new();
-            foreach(var item in premiumRows.Split(','))
+            foreach (var item in premiumRows.Split(','))
             {
                 var num = 0;
                 int.TryParse(item, out num);
                 premiums.Add(num);
             }
             Halls.Add(res);
-            for(int i = 0;i< res.Rows;i++)
+            for (int i = 0; i < res.Rows; i++)
             {
-                var type = (premiums.Where(x=>x==i).Count()>0) ? "Premium" : "default";
+                var type = (premiums.Where(x => x == i + 1).Count() > 0) ? "Premium" : "default";
                 for (int j = 0; j < res.SeatsInRow; j++)
                 {
                     var seat = new Seat()
@@ -84,20 +96,19 @@ namespace CompanyManager.ViewModel
                         SeatInRow = j + 1,
                         Hall = res,
                         Type = type
-                        
+
                     };
-                    _administrationService.AddSeatAsync(seat);
+                    await _administrationService.AddSeatAsync(seat);
                 }
-            }    
+            }
             AddHall = new CinemaHall();
             premiumRows = "";
         }
-
         private bool AddHallCunExecute(object obj)
         {
             if (AddHall.HallNumber == 0) return false;
-            if (addHall.Rows==0) return false;
-            if (addHall.SeatsInRow==0) return false;
+            if (addHall.Rows == 0) return false;
+            if (addHall.SeatsInRow == 0) return false;
             if (string.IsNullOrWhiteSpace(addHall.ScreenDiagonal)) return false;
 
 

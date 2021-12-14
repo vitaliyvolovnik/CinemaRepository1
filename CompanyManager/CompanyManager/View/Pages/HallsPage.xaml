@@ -10,7 +10,7 @@
       d:DesignHeight="430" d:DesignWidth="560"
       Title="HallsPage">
         
-        <Grid>
+        <Grid HorizontalAlignment="Left" Width="560">
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
@@ -49,11 +49,11 @@
             <TextBox Name="PremiumRowTextBox" md:HintAssist.Hint="premium rows (x,x,x,x...)" Style="{StaticResource MaterialDesignOutlinedTextBox}"
                  Padding="3" Margin="4" BorderBrush="#abaaaa" Foreground="#abaaaa" FontSize="15"
                  md:HintAssist.Background="#262626" md:HintAssist.Foreground="#abaaaa"
-                 VerticalAlignment="Center" Grid.Row="2" Grid.Column="0" Text="{Binding premiumRows, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-            <Button Grid.Column="1" Grid.Row="2" Margin="4"
+                 VerticalAlignment="Center" Grid.Row="2" Grid.Column="0" Text="{Binding PremiumRows, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <Button Grid.Column="1" Grid.Row="2" Margin="4" Command="{Binding AddHallCommand}"
                    VerticalAlignment="Center" HorizontalAlignment="Center">Add hall</Button>
         </Grid>
-        <ListBox ItemsSource="{Binding Halls}" Grid.Row="1" Margin="5">
+        <ListBox  ItemsSource="{Binding Halls, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Margin="5">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid>

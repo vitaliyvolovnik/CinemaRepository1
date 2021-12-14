@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:CompanyManager.View"
         xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d" 
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" Background="#232323">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="240"></ColumnDefinition>
@@ -100,7 +100,7 @@
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0" Background="#0686bf"></Grid>
-            <Frame Name="MainPagesFrame"></Frame>
+            <Frame Name="MainPagesFrame" Grid.Row="1"></Frame>
         </Grid>
     </Grid>
 </Window>

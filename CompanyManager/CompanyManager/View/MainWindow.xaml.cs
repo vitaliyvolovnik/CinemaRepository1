@@ -29,19 +29,22 @@ namespace CompanyManager.View
         public MainWindow()
         {
             InitializeComponent();
-
+            
             var autWind = App.provider.GetService<AutorizationWindow>();
             var res = autWind.ShowDialog();
             if (res == true)
             {
+                
                 employee = autWind.employee;
                 NameTExtBox.Content = employee.Name;
                 SurnameTextBox.Content = employee.Surname;
                 PostTextBox.Content = employee.Role;
             }
             else
-                this.Close();
+               this.Close();
             var page = App.provider.GetService<HallsPage>();
+            MainPagesFrame.Content = page;
+           
         }
 
         private void Button_MouseLeave(object sender, MouseEventArgs e)
