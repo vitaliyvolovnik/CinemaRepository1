@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using CompanyManager.View;
 using BLL.Services;
+using CompanyManager.ViewModel;
+using CompanyManager.View.Pages;
 
 namespace CompanyManager
 {
@@ -25,7 +27,7 @@ namespace CompanyManager
         }
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            var wind = provider.GetService<AutorizationWindow>();
+            var wind = provider.GetService<MainWindow>();
 
             wind.Show();
             
@@ -35,7 +37,9 @@ namespace CompanyManager
         {
             collectoin.AddTransient<AutorizationWindow>();
             collectoin.AddTransient<MainWindow>();
+            collectoin.AddTransient<HallsPage>();
             collectoin.AddTransient<TicketService>();
+            collectoin.AddTransient<HallsViewModel>();
             collectoin.AddTransient<EmployeeService>();
             collectoin.AddTransient<AutorizationService>();
             collectoin.AddTransient<AdministrationService>();

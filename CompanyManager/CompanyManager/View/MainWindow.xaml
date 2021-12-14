@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CompanyManager.View"
         xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
-        mc:Ignorable="d" Loaded="Window_Loaded"
+        mc:Ignorable="d" 
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -41,7 +41,7 @@
             <StackPanel Orientation="Horizontal" Grid.Row="1" Height="50" Width="240"
                         MouseLeave="Button_MouseLeave" MouseEnter="Button_MouseEnter">
                 <Grid Width="0" Background="#0686bf" Name="Bhrid1"></Grid>
-                <Button Background="{x:Null}" BorderThickness="0" 
+                <Button Background="{x:Null}" BorderThickness="0" Name="TicketsPageBtn"
                         Height="50" Width="240">
                     <StackPanel Orientation="Horizontal" Width="220">
                         <md:PackIcon VerticalAlignment="Center" Kind="Ticket"></md:PackIcon>
@@ -52,7 +52,7 @@
             <StackPanel Orientation="Horizontal" Grid.Row="2" Height="50" Width="240"
                         MouseLeave="Button_MouseLeave" MouseEnter="Button_MouseEnter">
                 <Grid Width="0" Background="#0686bf" Name="Bhrid2"></Grid>
-                <Button Background="{x:Null}" BorderThickness="0" 
+                <Button Background="{x:Null}" BorderThickness="0" Name="SessionPageBtn"
                         Height="50" Width="240" >
                     <StackPanel Orientation="Horizontal" Width="220">
                         <md:PackIcon VerticalAlignment="Center" Kind="VideoFilm"></md:PackIcon>
@@ -60,10 +60,10 @@
                     </StackPanel>
                 </Button>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" Grid.Row="3" Height="50" Width="240"
+            <StackPanel Orientation="Horizontal" Grid.Row="5" Height="50" Width="240"
                         MouseLeave="Button_MouseLeave" MouseEnter="Button_MouseEnter">
                 <Grid Width="0" Background="#0686bf" Name="Bhrid3"></Grid>
-                <Button Background="{x:Null}" BorderThickness="0" 
+                <Button Background="{x:Null}" BorderThickness="0" Name="HallsPageBtn"
                         Height="50" Width="240" >
                     <StackPanel Orientation="Horizontal" Width="220">
                         <md:PackIcon VerticalAlignment="Center" Kind="Cinema"></md:PackIcon>
@@ -74,7 +74,7 @@
             <StackPanel Orientation="Horizontal" Grid.Row="4" Height="50" Width="240"
                         MouseLeave="Button_MouseLeave" MouseEnter="Button_MouseEnter">
                 <Grid Width="0" Background="#0686bf" Name="Bhrid4"></Grid>
-                <Button Background="{x:Null}" BorderThickness="0" 
+                <Button Background="{x:Null}" BorderThickness="0" Name="EmployeePageBtn"
                         Height="50" Width="240" Tag="Bhrid4" >
                     <StackPanel Orientation="Horizontal" Width="220">
                         <md:PackIcon VerticalAlignment="Center" Kind="User"></md:PackIcon>
@@ -82,10 +82,10 @@
                     </StackPanel>
                 </Button>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" Grid.Row="5" Height="50" Width="240"
+            <StackPanel Orientation="Horizontal" Grid.Row="3" Height="50" Width="240"
                         MouseLeave="Button_MouseLeave" MouseEnter="Button_MouseEnter">
                 <Grid Width="0" Background="#0686bf" Name="Bhrid5"></Grid>
-                <Button Background="{x:Null}" BorderThickness="0" 
+                <Button Background="{x:Null}" BorderThickness="0" Name="FilmPageBtn"
                         Height="50" Width="240" Tag="Bhrid4" >
                     <StackPanel Orientation="Horizontal" Width="220">
                         <md:PackIcon VerticalAlignment="Center" Kind="Movie"></md:PackIcon>
@@ -96,11 +96,11 @@
         </Grid>
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="0.02*"></RowDefinition>
+                <RowDefinition Height="20"></RowDefinition>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0" Background="#0686bf"></Grid>
-            
+            <Frame Name="MainPagesFrame"></Frame>
         </Grid>
     </Grid>
 </Window>

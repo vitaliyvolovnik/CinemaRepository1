@@ -1,0 +1,94 @@
+﻿<Page x:Class="CompanyManager.View.Pages.HallsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CompanyManager.View.Pages"
+      mc:Ignorable="d" 
+      xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:l="clr-namespace:CompanyManager.ViewModel"
+      d:DesignHeight="430" d:DesignWidth="560"
+      Title="HallsPage">
+        
+        <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBox Name="NumberTextBox" md:HintAssist.Hint="Hall number" Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                 Padding="3" Margin="4" BorderBrush="#abaaaa" Foreground="#abaaaa" FontSize="15"
+                 md:HintAssist.Background="#262626" md:HintAssist.Foreground="#abaaaa"
+                 VerticalAlignment="Center" Text="{Binding AddHall.HallNumber, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            
+            <TextBox Name="DiagonalTextBox" md:HintAssist.Hint="Screen Diagonal" Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                 Padding="3" Margin="4" BorderBrush="#abaaaa" Foreground="#abaaaa" FontSize="15"
+                 md:HintAssist.Background="#262626" md:HintAssist.Foreground="#abaaaa"
+                 VerticalAlignment="Center" Grid.Row="0" Grid.Column="1" Text="{Binding AddHall.ScreenDiagonal , UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            
+            <TextBox Name="RowsTextBox" md:HintAssist.Hint="Rows" Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                 Padding="3" Margin="4" BorderBrush="#abaaaa" Foreground="#abaaaa" FontSize="15"
+                 md:HintAssist.Background="#262626" md:HintAssist.Foreground="#abaaaa"
+                 VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" Text="{Binding AddHall.Rows , UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            
+            <TextBox Name="SeatsInRowTextBox" md:HintAssist.Hint="Seats in row" Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                 Padding="3" Margin="4" BorderBrush="#abaaaa" Foreground="#abaaaa" FontSize="15"
+                 md:HintAssist.Background="#262626" md:HintAssist.Foreground="#abaaaa"
+                 VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" Text="{Binding AddHall.SeatsInRow, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            
+            <TextBox Name="PremiumRowTextBox" md:HintAssist.Hint="premium rows (x,x,x,x...)" Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                 Padding="3" Margin="4" BorderBrush="#abaaaa" Foreground="#abaaaa" FontSize="15"
+                 md:HintAssist.Background="#262626" md:HintAssist.Foreground="#abaaaa"
+                 VerticalAlignment="Center" Grid.Row="2" Grid.Column="0" Text="{Binding premiumRows, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <Button Grid.Column="1" Grid.Row="2" Margin="4"
+                   VerticalAlignment="Center" HorizontalAlignment="Center">Add hall</Button>
+        </Grid>
+        <ListBox ItemsSource="{Binding Halls}" Grid.Row="1" Margin="5">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Foreground="#abaaaa"
+                               FontSize="15">Hall number:</Label>
+                        <Label Grid.Column="1" Foreground="#abaaaa"
+                               FontSize="15" Content="{Binding HallNumber,UpdateSourceTrigger=PropertyChanged}" ></Label>
+                        
+                        <Label Grid.Column="2" Foreground="#abaaaa"
+                               FontSize="15">Rows:</Label>
+                        <Label Grid.Column="3" Foreground="#abaaaa"
+                               FontSize="15" Content="{Binding Rows,UpdateSourceTrigger=PropertyChanged}"></Label>
+                        
+                        <Label Grid.Column="4" Foreground="#abaaaa"
+                               FontSize="15">Seats in row</Label>
+                        <Label Grid.Column="5" Foreground="#abaaaa"
+                               FontSize="15" Content="{Binding SeatsInRow,UpdateSourceTrigger=PropertyChanged}"></Label>
+                        
+                        <Label Grid.Column="6" Foreground="#abaaaa"
+                               FontSize="15">screen diagonal</Label>
+                        <Label Grid.Column="7" Foreground="#abaaaa"
+                               FontSize="15" Content="{Binding ScreenDiagonal,UpdateSourceTrigger=PropertyChanged}"></Label>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+</Page>

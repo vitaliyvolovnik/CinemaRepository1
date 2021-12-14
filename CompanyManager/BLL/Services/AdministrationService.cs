@@ -10,14 +10,16 @@ namespace BLL.Services
 {
     public class AdministrationService
     {
-        public EmployeeRepository employeeRepository;
+        EmployeeRepository employeeRepository;
         HallRepository hallRepository;
+        SeatRepository seatRepository;
         SessionRepository sessionRepository;
-        public AdministrationService(EmployeeRepository Repository, HallRepository hallRepository, SessionRepository sessionRepository)
+        public AdministrationService(EmployeeRepository Repository, HallRepository hallRepository, SessionRepository sessionRepository, SeatRepository seatRepository)
         {
             this.employeeRepository = Repository;
             this.hallRepository = hallRepository;
             this.sessionRepository = sessionRepository;
+            this.seatRepository = seatRepository;
         }
         public async Task<Employee> AddWorkerAsync(Employee RegEmployee)
         {
@@ -41,6 +43,10 @@ namespace BLL.Services
             {
                 return null;
             }
+        }
+        public async void AddSeatAsync(Seat seat)
+        {
+           await seatRepository.CreateAsync(seat);
         }
         public async Task<float> GetProfit(Session session)
         {

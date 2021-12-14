@@ -1,4 +1,5 @@
 ﻿using DLL.Context;
+using DLL.Models;
 using DLL.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -22,6 +23,7 @@ namespace BLL
             collection.AddTransient<HallRepository>();
             collection.AddTransient<SeatRepository>();
             collection.AddTransient<SessionRepository>();
+            collection.AddSingleton<Employee>();
         }
     }
 }

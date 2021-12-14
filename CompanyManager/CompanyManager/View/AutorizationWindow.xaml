@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:CompanyManager.View"
         xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="AutorizationWindow" Height="180" Width="270">
+        Title="AutorizationWindow" Height="195" Width="270">
     <StackPanel Orientation="Vertical" Background="#262626">
         <Label FontSize="25" HorizontalAlignment="Center" Foreground="#abaaaa" FontWeight="Bold">Autorization</Label>
         <TextBox Name="MailTextBox" md:HintAssist.Hint="Email address" Style="{StaticResource MaterialDesignOutlinedTextBox}"

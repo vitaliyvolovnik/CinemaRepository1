@@ -1,4 +1,7 @@
-﻿using DLL.Models;
+﻿using BLL.Services;
+using CompanyManager.View.Pages;
+using DLL.Models;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,13 +24,24 @@ namespace CompanyManager.View
     public partial class MainWindow : Window
     {
         private Employee employee;
-        public Employee Employee
-        {
-            set { if (employee == null) employee = value; }
-        }
+        
+        
         public MainWindow()
         {
             InitializeComponent();
+
+            var autWind = App.provider.GetService<AutorizationWindow>();
+            var res = autWind.ShowDialog();
+            if (res == true)
+            {
+                employee = autWind.employee;
+                NameTExtBox.Content = employee.Name;
+                SurnameTextBox.Content = employee.Surname;
+                PostTextBox.Content = employee.Role;
+            }
+            else
+                this.Close();
+            var page = App.provider.GetService<HallsPage>();
         }
 
         private void Button_MouseLeave(object sender, MouseEventArgs e)
@@ -43,11 +57,8 @@ namespace CompanyManager.View
             grid.Width = 7;
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            NameTExtBox.Content = employee.Name;
-            SurnameTextBox.Content = employee.Surname;
-            PostTextBox.Content = employee.Role;
-        }
+        
+
+        
     }
 }
