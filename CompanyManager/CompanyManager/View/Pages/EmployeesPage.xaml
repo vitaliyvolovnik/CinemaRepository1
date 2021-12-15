@@ -4,11 +4,59 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:CompanyManager.View.Pages"
-      mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      mc:Ignorable="d"
+      xmlns:l="clr-namespace:CompanyManager.ViewModel"
+      xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+      d:DesignHeight="430" d:DesignWidth="660"
       Title="EmployeesPage">
-
+    
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+            <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBox Name="NameTextBox" md:HintAssist.Hint="Name" Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                 Padding="3" Margin="4" BorderBrush="#abaaaa" Foreground="#abaaaa" FontSize="15"
+                 md:HintAssist.Background="#262626" md:HintAssist.Foreground="#abaaaa"
+                 VerticalAlignment="Center" Text="{Binding Add, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+
+            <TextBox Name="SurnameTextBox" md:HintAssist.Hint="Surname" Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                 Padding="3" Margin="4" BorderBrush="#abaaaa" Foreground="#abaaaa" FontSize="15"
+                 md:HintAssist.Background="#262626" md:HintAssist.Foreground="#abaaaa"
+                 VerticalAlignment="Center" Grid.Row="0" Grid.Column="1" Text="{Binding AddHall.ScreenDiagonal , UpdateSourceTrigger=PropertyChanged}"></TextBox>
+
+            <TextBox Name="RoleTextBox" md:HintAssist.Hint="Role" Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                 Padding="3" Margin="4" BorderBrush="#abaaaa" Foreground="#abaaaa" FontSize="15"
+                 md:HintAssist.Background="#262626" md:HintAssist.Foreground="#abaaaa"
+                 VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" Text="{Binding AddHall.Rows , UpdateSourceTrigger=PropertyChanged}"></TextBox>
+
+            <TextBox Name="EmailTextBox" md:HintAssist.Hint="Email" Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                 Padding="3" Margin="4" BorderBrush="#abaaaa" Foreground="#abaaaa" FontSize="15"
+                 md:HintAssist.Background="#262626" md:HintAssist.Foreground="#abaaaa"
+                 VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" Text="{Binding AddHall.SeatsInRow, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+
+            <TextBox Name="PuswordRowTextBox" md:HintAssist.Hint="Password" Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                 Padding="3" Margin="4" BorderBrush="#abaaaa" Foreground="#abaaaa" FontSize="15"
+                 md:HintAssist.Background="#262626" md:HintAssist.Foreground="#abaaaa"
+                 VerticalAlignment="Center" Grid.Row="2" Grid.Column="0" Text="{Binding PremiumRows, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <TextBox  md:HintAssist.Hint="Birthday" Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                 Padding="3" Margin="4" BorderBrush="#abaaaa" Foreground="#abaaaa" FontSize="15"
+                 md:HintAssist.Background="#262626" md:HintAssist.Foreground="#abaaaa"
+                 VerticalAlignment="Center" Grid.Row="2" Grid.Column="1" Text="{Binding PremiumRows, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <Button Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Margin="4" Command="{Binding AddHallCommand}"
+                   VerticalAlignment="Center" HorizontalAlignment="Center">Add hall</Button>
+        </Grid>
     </Grid>
 </Page>
