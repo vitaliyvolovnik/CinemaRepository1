@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:CompanyManager.View"
         xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d" 
-        Title="MainWindow" Height="450" Width="800" Background="#232323">
+        Title="MainWindow" Height="480" Width="900" Background="#232323">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="240"></ColumnDefinition>
@@ -61,10 +61,10 @@
                 </Button>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Row="5" Height="50" Width="240"
-                        MouseLeave="Button_MouseLeave" MouseEnter="Button_MouseEnter">
+                        MouseLeave="Button_MouseLeave" Name="HallsStackPAnel" MouseEnter="Button_MouseEnter">
                 <Grid Width="0" Background="#0686bf" Name="Bhrid3"></Grid>
                 <Button Background="{x:Null}" BorderThickness="0" Name="HallsPageBtn"
-                        Height="50" Width="240" >
+                        Height="50" Width="240" Click="HallsPageBtn_Click" >
                     <StackPanel Orientation="Horizontal" Width="220">
                         <md:PackIcon VerticalAlignment="Center" Kind="Cinema"></md:PackIcon>
                         <Label FontSize="15" Foreground="#abaaaa">Halls</Label>
@@ -72,10 +72,10 @@
                 </Button>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Row="4" Height="50" Width="240"
-                        MouseLeave="Button_MouseLeave" MouseEnter="Button_MouseEnter">
+                        MouseLeave="Button_MouseLeave" Name="EmployeeStackPAnel" MouseEnter="Button_MouseEnter">
                 <Grid Width="0" Background="#0686bf" Name="Bhrid4"></Grid>
                 <Button Background="{x:Null}" BorderThickness="0" Name="EmployeePageBtn"
-                        Height="50" Width="240" Tag="Bhrid4" >
+                        Height="50" Width="240" Tag="Bhrid4" Click="EmployeePageBtn_Click" >
                     <StackPanel Orientation="Horizontal" Width="220">
                         <md:PackIcon VerticalAlignment="Center" Kind="User"></md:PackIcon>
                         <Label FontSize="15" Foreground="#abaaaa">Employees</Label>
@@ -83,10 +83,10 @@
                 </Button>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Row="3" Height="50" Width="240"
-                        MouseLeave="Button_MouseLeave" MouseEnter="Button_MouseEnter">
+                        MouseLeave="Button_MouseLeave" Name="FilmStackPAnel" MouseEnter="Button_MouseEnter">
                 <Grid Width="0" Background="#0686bf" Name="Bhrid5"></Grid>
                 <Button Background="{x:Null}" BorderThickness="0" Name="FilmPageBtn"
-                        Height="50" Width="240" Tag="Bhrid4" >
+                        Height="50" Width="240" Tag="Bhrid4" Click="FilmPageBtn_Click" >
                     <StackPanel Orientation="Horizontal" Width="220">
                         <md:PackIcon VerticalAlignment="Center" Kind="Movie"></md:PackIcon>
                         <Label FontSize="15" Foreground="#abaaaa">Films</Label>

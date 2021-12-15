@@ -6,9 +6,7 @@ using System.Threading.Tasks;
 
 namespace CompanyManager.ViewModel
 {
-    public class MainWindowModelView:BaseViewModel
+    public class TicketViewModel
     {
-
-
     }
 }

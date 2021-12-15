@@ -18,9 +18,10 @@ namespace CompanyManager.ViewModel
         private readonly SessionHallService _sessionHallService;
         private CinemaHall addHall;
         private string premiumRows = "";
+        private bool Isloaded = false;
 
         private ObservableCollection<CinemaHall> halls;
-        public  HallsViewModel(AdministrationService administration, SessionHallService sessionHall) : base()
+        public HallsViewModel(AdministrationService administration, SessionHallService sessionHall) : base()
         {
             _administrationService = administration;
             _sessionHallService = sessionHall;
@@ -30,7 +31,12 @@ namespace CompanyManager.ViewModel
         public async Task LoadHalls()
         {
             var list = await _sessionHallService.GetAllHallsAsync();
-            halls = new ObservableCollection<CinemaHall>(list);
+            foreach (var item in list)
+            {
+                halls.Add(item);
+
+            }
+            Isloaded = true;
         }
         public string PremiumRows
         {
@@ -58,7 +64,7 @@ namespace CompanyManager.ViewModel
         {
             get
             {
-                if (halls == null) halls = new();
+                if (halls == null) halls=new ObservableCollection<CinemaHall>();
                 return halls;
             }
            
@@ -74,7 +80,7 @@ namespace CompanyManager.ViewModel
         }
         private async void AddHallExecute(object obj)
         {
-            await LoadHalls();
+            
             var res = await _administrationService.AddHallAsync(AddHall);
             if (res == null) return;
             List<int> premiums = new();
@@ -110,7 +116,7 @@ namespace CompanyManager.ViewModel
             if (addHall.Rows == 0) return false;
             if (addHall.SeatsInRow == 0) return false;
             if (string.IsNullOrWhiteSpace(addHall.ScreenDiagonal)) return false;
-
+            if (!Isloaded) return false;
 
             return true;
         }

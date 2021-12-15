@@ -24,7 +24,7 @@ namespace CompanyManager.View
     public partial class MainWindow : Window
     {
         private Employee employee;
-        
+        private HallsPage hallsPage;
         
         public MainWindow()
         {
@@ -42,9 +42,15 @@ namespace CompanyManager.View
             }
             else
                this.Close();
-            var page = App.provider.GetService<HallsPage>();
-            MainPagesFrame.Content = page;
            
+            if(employee?.Role!="Administrator")
+            {
+                HallsStackPAnel.IsEnabled = false;
+                EmployeeStackPAnel.IsEnabled = false;
+                FilmStackPAnel.IsEnabled = false;
+            }
+            hallsPage = App.provider.GetService<HallsPage>();
+
         }
 
         private void Button_MouseLeave(object sender, MouseEventArgs e)
@@ -60,8 +66,20 @@ namespace CompanyManager.View
             grid.Width = 7;
         }
 
-        
+        private void HallsPageBtn_Click(object sender, RoutedEventArgs e)
+        {
+            
+            MainPagesFrame.Content = hallsPage;
+        }
 
-        
+        private void EmployeePageBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void FilmPageBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

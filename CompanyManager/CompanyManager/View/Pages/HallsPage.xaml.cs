@@ -27,6 +27,7 @@ namespace CompanyManager.View.Pages
             InitializeComponent();
             viewModel = model;
             this.DataContext = viewModel;
+            HallListBox.ItemsSource= viewModel.Halls;
         }
     }
 }

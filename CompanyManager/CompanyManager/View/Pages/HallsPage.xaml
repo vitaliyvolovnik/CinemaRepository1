@@ -7,13 +7,13 @@
       mc:Ignorable="d" 
       xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:l="clr-namespace:CompanyManager.ViewModel"
-      d:DesignHeight="430" d:DesignWidth="560"
+      d:DesignHeight="460" d:DesignWidth="560"
       Title="HallsPage">
         
-        <Grid HorizontalAlignment="Left" Width="560">
+        <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="0.4*"></RowDefinition>
+            <RowDefinition Height="0.6*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -53,18 +53,18 @@
             <Button Grid.Column="1" Grid.Row="2" Margin="4" Command="{Binding AddHallCommand}"
                    VerticalAlignment="Center" HorizontalAlignment="Center">Add hall</Button>
         </Grid>
-        <ListBox  ItemsSource="{Binding Halls, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Margin="5">
+        <ListBox  Name="HallListBox"  Grid.Row="1" Margin="5">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid>
                         <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="85"></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition Width="65"></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition Width="105"></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition Width="120"></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <Label Grid.Column="0" Foreground="#abaaaa"

@@ -38,9 +38,17 @@ namespace CompanyManager
         {
             collectoin.AddTransient<AutorizationWindow>();
             collectoin.AddTransient<MainWindow>();
+
+            collectoin.AddTransient<EmployeesPage>();
+            collectoin.AddTransient<FilmsPage>();
             collectoin.AddTransient<HallsPage>();
+            collectoin.AddTransient<SessionPage>();
             collectoin.AddTransient<TicketService>();
+
             collectoin.AddTransient<HallsViewModel>();
+            collectoin.AddTransient<EmployeeViewModel>();
+
+            collectoin.AddTransient<TicketService>(); 
             collectoin.AddTransient<EmployeeService>();
             collectoin.AddTransient<AutorizationService>();
             collectoin.AddTransient<AdministrationService>();
