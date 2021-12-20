@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CompanyManager.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,12 @@ namespace CompanyManager.View.Pages
     /// </summary>
     public partial class SessionPage : Page
     {
-        public SessionPage()
+        private readonly SessionViewModel _sessionViewModel;
+        public SessionPage(SessionViewModel viewModel)
         {
             InitializeComponent();
+            this._sessionViewModel = viewModel;
+            this.DataContext = this._sessionViewModel;
         }
     }
 }

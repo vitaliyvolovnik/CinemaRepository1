@@ -5,10 +5,75 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:CompanyManager.View.Pages"
       mc:Ignorable="d" 
+      xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="FilmsPage">
 
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBox Name="NameTextBox" md:HintAssist.Hint="Name" Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                 Padding="3" Margin="4" BorderBrush="#abaaaa" Foreground="#abaaaa" FontSize="15"
+                 md:HintAssist.Background="#262626" md:HintAssist.Foreground="#abaaaa"
+                 VerticalAlignment="Center" Text="{Binding AddFilm.Name, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+
+            <TextBox Name="GenreTextBox" md:HintAssist.Hint="Genre" Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                 Padding="3" Margin="4" BorderBrush="#abaaaa" Foreground="#abaaaa" FontSize="15"
+                 md:HintAssist.Background="#262626" md:HintAssist.Foreground="#abaaaa"
+                 VerticalAlignment="Center" Grid.Row="0" Grid.Column="1" Text="{Binding AddFilm.Genre , UpdateSourceTrigger=PropertyChanged}"></TextBox>
+
+            <TextBox Name="PriceTextBox" md:HintAssist.Hint="Price" Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                 Padding="3" Margin="4" BorderBrush="#abaaaa" Foreground="#abaaaa" FontSize="15"
+                 md:HintAssist.Background="#262626" md:HintAssist.Foreground="#abaaaa"
+                 VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" Text="{Binding AddFilm.Price , UpdateSourceTrigger=PropertyChanged}"></TextBox>
+
+
+            <TextBox  md:HintAssist.Hint="PlayTime" Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                 Padding="3" Margin="4" BorderBrush="#abaaaa" Foreground="#abaaaa" FontSize="15"
+                 md:HintAssist.Background="#262626" md:HintAssist.Foreground="#abaaaa"
+                 VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" Text="{Binding AddFilm.PlayTime, StringFormat='HH:mm:ss', UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <Button Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Margin="4" Command="{Binding AddFilmCommand}" 
+                   VerticalAlignment="Center" HorizontalAlignment="Center">Add film</Button>
+        </Grid>
+        <ListBox Grid.Row="1" Name="FilmListBox">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="#abaaaa" BorderThickness="2" CornerRadius="5">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition Width="150"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" FontSize="15" Foreground="#abaaaa" HorizontalAlignment="Left">Name:</Label>
+                            <Label Grid.Column="1" FontSize="15" Foreground="#abaaaa" 
+                                   Content="{Binding Name}" HorizontalAlignment="Left"></Label>
+                            <Label Grid.Column="2" FontSize="15" Foreground="#abaaaa" HorizontalAlignment="Left">Genre:</Label>
+                            <Label Grid.Column="3" FontSize="15" Foreground="#abaaaa" 
+                                   Content="{Binding Genre}" HorizontalAlignment="Left"></Label>
+                            <Label Grid.Column="4" FontSize="15" Foreground="#abaaaa" HorizontalAlignment="Left">Play time:</Label>
+                            <Label Grid.Column="5" FontSize="15" Foreground="#abaaaa" 
+                                   Content="{Binding PlayTimestr}" HorizontalAlignment="Left"></Label>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </Page>

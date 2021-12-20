@@ -1,5 +1,6 @@
 ﻿using BLL.Services;
 using CompanyManager.View.Pages;
+using CompanyManager.ViewModel;
 using DLL.Models;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -23,36 +24,16 @@ namespace CompanyManager.View
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Employee employee;
-        private HallsPage hallsPage;
-        
+
+        private readonly MainViewModel? _model;
+
         public MainWindow()
         {
             InitializeComponent();
-            
-            var autWind = App.provider.GetService<AutorizationWindow>();
-            var res = autWind.ShowDialog();
-            if (res == true)
-            {
-                
-                employee = autWind.employee;
-                NameTExtBox.Content = employee.Name;
-                SurnameTextBox.Content = employee.Surname;
-                PostTextBox.Content = employee.Role;
-            }
-            else
-               this.Close();
-           
-            if(employee?.Role!="Administrator")
-            {
-                HallsStackPAnel.IsEnabled = false;
-                EmployeeStackPAnel.IsEnabled = false;
-                FilmStackPAnel.IsEnabled = false;
-            }
-            hallsPage = App.provider.GetService<HallsPage>();
+            this._model = App.provider.GetService<MainViewModel>();
+            this.DataContext = _model;
 
         }
-
         private void Button_MouseLeave(object sender, MouseEventArgs e)
         {
             var panel = (StackPanel)sender;
@@ -64,22 +45,6 @@ namespace CompanyManager.View
             var panel = (StackPanel)sender;
             var grid = (Grid)panel.Children[0];
             grid.Width = 7;
-        }
-
-        private void HallsPageBtn_Click(object sender, RoutedEventArgs e)
-        {
-            
-            MainPagesFrame.Content = hallsPage;
-        }
-
-        private void EmployeePageBtn_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void FilmPageBtn_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿    using CompanyManager.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,13 @@ namespace CompanyManager.View.Pages
     /// </summary>
     public partial class EmployeesPage : Page
     {
-        public EmployeesPage()
+        private readonly EmployeeViewModel _employeeViewModel;
+        public EmployeesPage(EmployeeViewModel viewModel)
         {
             InitializeComponent();
+            this._employeeViewModel = viewModel;
+            this.DataContext = this._employeeViewModel;
+            EmployeesListBox.ItemsSource = _employeeViewModel.Employees;
         }
     }
 }

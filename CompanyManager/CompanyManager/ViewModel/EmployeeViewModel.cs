@@ -40,7 +40,7 @@ namespace CompanyManager.ViewModel
             get { if (employees == null) employees = new(); return employees; }
         }
         //Load Employee
-        public async Task LoadEmployees()
+        public async void LoadEmployees()
         {
             var list = await _employeeService.GetAllWhoWorkAsync();
             foreach (var item in list)
@@ -60,15 +60,14 @@ namespace CompanyManager.ViewModel
         private bool AddEmployeeCanExecute(object obj)
         {
             if (!IsLoadedEmployees) return false;
-            if (Regex.IsMatch(addEmployee.Name, "^[a-z-]{1,25}$")) return false;
-            if (Regex.IsMatch(addEmployee.Surname, "^[a-z-]{1,25}$")) return false;
-            if (Regex.IsMatch(addEmployee.Mail, @"^[a-z][a-z 0-9-]{1,14}@[a-z 0-9]{2,7}\.[a-z]{2,5}$")) return false;
-            if (addEmployee.Role == "Administrator" || addEmployee.Role == "cashier") return false;
+            if (!Regex.IsMatch(addEmployee.Name, "^[a-zA-Z-]{1,25}$")) return false;
+            if (!Regex.IsMatch(addEmployee.Surname, "^[a-zA-Z-]{1,25}$")) return false;
+            if (!Regex.IsMatch(addEmployee.Mail, @"^[a-zA-Z-][a-zA-Z0-9-]{1,14}@[a-zA-Z0-9]{2,7}\.[a-zA-Z]{2,5}$")) return false;
+            if (!(addEmployee.Role.ToLower() == "administrator" || addEmployee.Role.ToLower() == "cashier")) return false;
             var time = DateTime.Now;
             var Ctime = time.AddYears(-16);
-            if (addEmployee.DayOfBirdh < Ctime) return false;
-            if (addEmployee.DayOfBirdh > new DateTime(1960, 1, 1)) return false;
-            
+            if (!(addEmployee.DayOfBirdh < Ctime)) return false;
+            if (!(addEmployee.DayOfBirdh > new DateTime(1960, 1, 1))) return false;
             return true;
         }
 

@@ -4,11 +4,50 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:CompanyManager.View.Pages"
-      mc:Ignorable="d" 
+      mc:Ignorable="d"
+      xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="SessionPage">
 
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="330"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <ComboBox Foreground="#abaaaa" Name="FilmComboBox" md:HintAssist.Hint="Film" ItemsSource="{Binding Films}"
+                      Grid.Row="0" Grid.Column="0" Margin="5" SelectedItem="{Binding AddSession.Film}"
+                      FontSize="15" BorderBrush="#abaaaa" VerticalAlignment="Center"></ComboBox>
+            <ComboBox Foreground="#abaaaa" Name="HallComboBox" md:HintAssist.Hint="Hall" ItemsSource="{Binding Halls}"
+                      Grid.Column="0" Grid.Row="1" Margin="5" SelectedItem="{Binding AddSession.Hall}"
+                      FontSize="15" BorderBrush="#abaaaa" VerticalAlignment="Center"></ComboBox>
+            <TextBox  md:HintAssist.Hint="PlayTime" Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                 Padding="3" Margin="4" BorderBrush="#abaaaa" Foreground="#abaaaa" FontSize="15"
+                 md:HintAssist.Background="#262626" md:HintAssist.Foreground="#abaaaa"
+                 VerticalAlignment="Center" Grid.Row="2" Grid.Column="0" Text="{Binding AddSession.StartTime, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <TextBox Name="GenreTextBox" md:HintAssist.Hint="default ticket price" Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                 Padding="3" Margin="4" BorderBrush="#abaaaa" Foreground="#abaaaa" FontSize="15"
+                 md:HintAssist.Background="#262626" md:HintAssist.Foreground="#abaaaa"
+                 VerticalAlignment="Center" Grid.Row="0" Grid.Column="1" Text="{Binding AddSession.TiketPrice , UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <TextBox Name="PremiumPriceTextBox" md:HintAssist.Hint="Premium ticket price" Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                 Padding="3" Margin="4" BorderBrush="#abaaaa" Foreground="#abaaaa" FontSize="15"
+                 md:HintAssist.Background="#262626" md:HintAssist.Foreground="#abaaaa"
+                 VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" Text="{Binding AddSession.PremiumTiketPrice , UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <Button FontSize="15" Grid.Row="3" HorizontalAlignment="Center"
+                    Grid.ColumnSpan="2">
+                Create session
+            </Button>
+        </Grid>
     </Grid>
 </Page>

@@ -12,8 +12,12 @@ namespace DLL.Models
         public int HallNumber { get; set; }
         public int Rows { get; set; }
         public int SeatsInRow { get; set; }
-        public string ScreenDiagonal { get; set; }
+        public string ScreenDiagonal { get; set; } = "";
         public List<Seat> Seats { get; set; }
+        public override string ToString()
+        {
+            return $"Hall {HallNumber}";
+        }
 
 
     }

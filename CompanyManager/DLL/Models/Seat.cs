@@ -12,7 +12,7 @@ namespace DLL.Models
         public CinemaHall Hall { get; set; }
         public int Row { get; set; }
         public int SeatInRow { get; set; }
-        public string Type { get; set; }
+        public string Type { get; set; } = "";
         public List<Booking> Bookings { get; set; }
     }
 }

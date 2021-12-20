@@ -56,37 +56,39 @@
         <ListBox  Name="HallListBox"  Grid.Row="1" Margin="5">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="85"></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition Width="65"></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition Width="105"></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition Width="120"></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" Foreground="#abaaaa"
+                    <Border BorderBrush="#abaaaa" BorderThickness="2" CornerRadius="5">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="85"></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition Width="65"></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition Width="105"></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition Width="120"></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Foreground="#abaaaa"
                                FontSize="15">Hall number:</Label>
-                        <Label Grid.Column="1" Foreground="#abaaaa"
+                            <Label Grid.Column="1" Foreground="#abaaaa" HorizontalAlignment="Left"
                                FontSize="15" Content="{Binding HallNumber,UpdateSourceTrigger=PropertyChanged}" ></Label>
-                        
-                        <Label Grid.Column="2" Foreground="#abaaaa"
+
+                            <Label Grid.Column="2" Foreground="#abaaaa"
                                FontSize="15">Rows:</Label>
-                        <Label Grid.Column="3" Foreground="#abaaaa"
+                            <Label Grid.Column="3" Foreground="#abaaaa" HorizontalAlignment="Left"
                                FontSize="15" Content="{Binding Rows,UpdateSourceTrigger=PropertyChanged}"></Label>
-                        
-                        <Label Grid.Column="4" Foreground="#abaaaa"
-                               FontSize="15">Seats in row</Label>
-                        <Label Grid.Column="5" Foreground="#abaaaa"
+
+                            <Label Grid.Column="4" Foreground="#abaaaa"
+                               FontSize="15">Seats in row:</Label>
+                            <Label Grid.Column="5" Foreground="#abaaaa" HorizontalAlignment="Left"
                                FontSize="15" Content="{Binding SeatsInRow,UpdateSourceTrigger=PropertyChanged}"></Label>
-                        
-                        <Label Grid.Column="6" Foreground="#abaaaa"
-                               FontSize="15">screen diagonal</Label>
-                        <Label Grid.Column="7" Foreground="#abaaaa"
+
+                            <Label Grid.Column="6" Foreground="#abaaaa"
+                               FontSize="15">screen diagonal:</Label>
+                            <Label Grid.Column="7" Foreground="#abaaaa" HorizontalAlignment="Left"
                                FontSize="15" Content="{Binding ScreenDiagonal,UpdateSourceTrigger=PropertyChanged}"></Label>
-                    </Grid>
+                        </Grid>
+                    </Border>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>

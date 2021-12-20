@@ -30,7 +30,7 @@ namespace CompanyManager.ViewModel
         }
         public async Task LoadHalls()
         {
-            var list = await _sessionHallService.GetAllHallsAsync();
+            var list = await _sessionHallService.GetAllHallsWhithoutSeatsAsync();
             foreach (var item in list)
             {
                 halls.Add(item);

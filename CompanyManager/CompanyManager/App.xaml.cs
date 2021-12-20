@@ -36,19 +36,27 @@ namespace CompanyManager
         }
         private void ConfigureService(ServiceCollection collectoin)
         {
+            //Windows
             collectoin.AddTransient<AutorizationWindow>();
             collectoin.AddTransient<MainWindow>();
 
+            //Pages
             collectoin.AddTransient<EmployeesPage>();
             collectoin.AddTransient<FilmsPage>();
             collectoin.AddTransient<HallsPage>();
             collectoin.AddTransient<SessionPage>();
             collectoin.AddTransient<TicketService>();
 
+            //ViewModel
             collectoin.AddTransient<HallsViewModel>();
             collectoin.AddTransient<EmployeeViewModel>();
-
+            collectoin.AddTransient<MainViewModel>();
+            collectoin.AddTransient<FilmViewModel>();
+            collectoin.AddTransient<SessionViewModel>();
+            
+            //Services
             collectoin.AddTransient<TicketService>(); 
+            collectoin.AddTransient<FilmService>(); 
             collectoin.AddTransient<EmployeeService>();
             collectoin.AddTransient<AutorizationService>();
             collectoin.AddTransient<AdministrationService>();

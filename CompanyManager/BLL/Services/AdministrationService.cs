@@ -10,34 +10,38 @@ namespace BLL.Services
 {
     public class AdministrationService
     {
-        EmployeeRepository employeeRepository;
-        HallRepository hallRepository;
-        SeatRepository seatRepository;
-        SessionRepository sessionRepository;
-        public AdministrationService(EmployeeRepository Repository, HallRepository hallRepository, SessionRepository sessionRepository, SeatRepository seatRepository)
+        private readonly EmployeeRepository _employeeRepository;
+        private readonly HallRepository _hallRepository;
+        private readonly SeatRepository _seatRepository;
+        private readonly SessionRepository _sessionRepository;
+
+        public AdministrationService(EmployeeRepository Repository,
+            HallRepository hallRepository,
+            SessionRepository sessionRepository,
+            SeatRepository seatRepository)
         {
-            this.employeeRepository = Repository;
-            this.hallRepository = hallRepository;
-            this.sessionRepository = sessionRepository;
-            this.seatRepository = seatRepository;
+            this._employeeRepository = Repository;
+            this._hallRepository = hallRepository;
+            this._sessionRepository = sessionRepository;
+            this._seatRepository = seatRepository;
         }
         public async Task<Employee> AddWorkerAsync(Employee RegEmployee)
         {
             if (RegEmployee == null) return null;
-            var employee = await employeeRepository.FindBuConditionAsync(x => x.Mail == RegEmployee.Mail);
+            var employee = await _employeeRepository.FindBuConditionAsync(x => x.Mail == RegEmployee.Mail);
             if (employee.Count() == 1) return null;
-            await employeeRepository.CreateAsync(RegEmployee);
-            return (await employeeRepository.FindBuConditionAsync(x => x.Mail == RegEmployee.Mail))?.First();
+            await _employeeRepository.CreateAsync(RegEmployee);
+            return (await _employeeRepository.FindBuConditionAsync(x => x.Mail == RegEmployee.Mail))?.First();
 
         }
         public async Task<CinemaHall> AddHallAsync(CinemaHall hall)
         {
-            var halls = (await hallRepository.FindBuConditionAsync(x => x.HallNumber == hall.HallNumber)).ToList();
+            var halls = (await _hallRepository.FindBuConditionAsync(x => x.HallNumber == hall.HallNumber)).ToList();
             if (halls.Count > 0) return null;
             try
             {
-                await hallRepository.CreateAsync(hall);
-                return (await hallRepository.FindBuConditionAsync(x => x.HallNumber == hall.HallNumber))?.First();
+                await _hallRepository.CreateAsync(hall);
+                return (await _hallRepository.FindBuConditionAsync(x => x.HallNumber == hall.HallNumber))?.First();
             }
             catch
             {
@@ -46,22 +50,24 @@ namespace BLL.Services
         }
         public async Task AddSeatAsync(Seat seat)
         {
-            
-                await seatRepository.CreateAsync(seat); 
+
+            await _seatRepository.CreateAsync(seat);
         }
         public async Task<float> GetProfit(Session session)
         {
             var sum = 0f;
-            var sess = (await sessionRepository.FindBuConditionAsync(x => x.Id== session.Id)).First();
+            var sess = (await _sessionRepository.FindBuConditionAsync(x => x.Id == session.Id)).First();
             foreach (var item in sess.Bookings)
             {
-                if ((!item.IsCansel)&&item.IsPaid) {
-                    if (item.Seat.Type == "Premium") sum += sess.PremiumTiketPrice; 
+                if ((!item.IsCansel) && item.IsPaid)
+                {
+                    if (item.Seat.Type == "Premium") sum += sess.PremiumTiketPrice;
                     else sum += sess.TiketPrice;
                 }
             }
             return sum;
         }
+        
         
     }
 }

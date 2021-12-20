@@ -35,6 +35,10 @@ namespace BLL.Services
         {
             return (await hallRepository.GetAllAsync())?.ToList();
         }
+        public async Task<List<CinemaHall>> GetAllHallsWhithoutSeatsAsync()
+        {
+            return (await hallRepository.GetAllWithoutSeatsAsync())?.ToList();
+        }
         public async Task<List<Session>> GetAllSessionsAsync()
         {
             return (await sessionRepository.GetAllAsync())?.ToList();
@@ -43,5 +47,6 @@ namespace BLL.Services
         {
             return (await sessionRepository.FindBuConditionAsync(x=>x.EndTime>DateTime.Now))?.ToList();
         }
+        
     }
 }

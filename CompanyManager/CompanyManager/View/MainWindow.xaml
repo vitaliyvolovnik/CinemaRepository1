@@ -30,12 +30,15 @@
                 <StackPanel Orientation="Horizontal"
                     VerticalAlignment="Bottom" HorizontalAlignment="Left">
                     <Label Margin="5,2,2,2" Foreground="#abaaaa" FontWeight="Bold"
-                           Name="NameTExtBox" FontSize="20">Vitaliy</Label>
+                           Name="NameTExtBox" FontSize="20" 
+                           Content="{Binding CurrentUser.Name,UpdateSourceTrigger=PropertyChanged}"></Label>
                     <Label Margin="5,2,2,2" Foreground="#abaaaa" FontWeight="Bold"
-                           Name="SurnameTextBox" FontSize="20">Volovnik</Label>
+                           Name="SurnameTextBox" FontSize="20"
+                           Content="{Binding CurrentUser.Surname,UpdateSourceTrigger=PropertyChanged}"></Label>
                 </StackPanel>
                 <Label Margin="2" Grid.Row="1" Foreground="#abaaaa"
-                       FontSize="15" Name="PostTextBox">Administrator</Label>
+                       FontSize="15" Name="PostTextBox"
+                       Content="{Binding CurrentUser.Role,UpdateSourceTrigger=PropertyChanged}"></Label>
                
             </Grid>
             <StackPanel Orientation="Horizontal" Grid.Row="1" Height="50" Width="240"
@@ -53,7 +56,7 @@
                         MouseLeave="Button_MouseLeave" MouseEnter="Button_MouseEnter">
                 <Grid Width="0" Background="#0686bf" Name="Bhrid2"></Grid>
                 <Button Background="{x:Null}" BorderThickness="0" Name="SessionPageBtn"
-                        Height="50" Width="240" >
+                        Height="50" Width="240"  Command="{Binding SesionPageCommand}">
                     <StackPanel Orientation="Horizontal" Width="220">
                         <md:PackIcon VerticalAlignment="Center" Kind="VideoFilm"></md:PackIcon>
                         <Label FontSize="15" Foreground="#abaaaa">Session</Label>
@@ -64,7 +67,7 @@
                         MouseLeave="Button_MouseLeave" Name="HallsStackPAnel" MouseEnter="Button_MouseEnter">
                 <Grid Width="0" Background="#0686bf" Name="Bhrid3"></Grid>
                 <Button Background="{x:Null}" BorderThickness="0" Name="HallsPageBtn"
-                        Height="50" Width="240" Click="HallsPageBtn_Click" >
+                        Height="50" Width="240" Command="{Binding HallsPageCommand}">
                     <StackPanel Orientation="Horizontal" Width="220">
                         <md:PackIcon VerticalAlignment="Center" Kind="Cinema"></md:PackIcon>
                         <Label FontSize="15" Foreground="#abaaaa">Halls</Label>
@@ -73,9 +76,10 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Row="4" Height="50" Width="240"
                         MouseLeave="Button_MouseLeave" Name="EmployeeStackPAnel" MouseEnter="Button_MouseEnter">
+                
                 <Grid Width="0" Background="#0686bf" Name="Bhrid4"></Grid>
                 <Button Background="{x:Null}" BorderThickness="0" Name="EmployeePageBtn"
-                        Height="50" Width="240" Tag="Bhrid4" Click="EmployeePageBtn_Click" >
+                        Height="50" Width="240" Tag="Bhrid4" Command="{Binding EmployeesPageCommand}">
                     <StackPanel Orientation="Horizontal" Width="220">
                         <md:PackIcon VerticalAlignment="Center" Kind="User"></md:PackIcon>
                         <Label FontSize="15" Foreground="#abaaaa">Employees</Label>
@@ -86,7 +90,7 @@
                         MouseLeave="Button_MouseLeave" Name="FilmStackPAnel" MouseEnter="Button_MouseEnter">
                 <Grid Width="0" Background="#0686bf" Name="Bhrid5"></Grid>
                 <Button Background="{x:Null}" BorderThickness="0" Name="FilmPageBtn"
-                        Height="50" Width="240" Tag="Bhrid4" Click="FilmPageBtn_Click" >
+                        Height="50" Width="240" Tag="Bhrid4" Command="{Binding FilmPageCommand}"  >
                     <StackPanel Orientation="Horizontal" Width="220">
                         <md:PackIcon VerticalAlignment="Center" Kind="Movie"></md:PackIcon>
                         <Label FontSize="15" Foreground="#abaaaa">Films</Label>
@@ -100,7 +104,7 @@
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0" Background="#0686bf"></Grid>
-            <Frame Name="MainPagesFrame" Grid.Row="1"></Frame>
+            <Frame Name="MainPagesFrame" NavigationUIVisibility="Hidden" Grid.Row="1" Content="{Binding CurentPage, UpdateSourceTrigger=PropertyChanged}"></Frame>
         </Grid>
     </Grid>
 </Window>

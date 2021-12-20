@@ -9,13 +9,13 @@
       xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
       d:DesignHeight="430" d:DesignWidth="660"
       Title="EmployeesPage">
-    
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-            <Grid>
+        <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
@@ -30,33 +30,67 @@
             <TextBox Name="NameTextBox" md:HintAssist.Hint="Name" Style="{StaticResource MaterialDesignOutlinedTextBox}"
                  Padding="3" Margin="4" BorderBrush="#abaaaa" Foreground="#abaaaa" FontSize="15"
                  md:HintAssist.Background="#262626" md:HintAssist.Foreground="#abaaaa"
-                 VerticalAlignment="Center" Text="{Binding Add, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                 VerticalAlignment="Center" Text="{Binding AddEmployee.Name, UpdateSourceTrigger=PropertyChanged}"></TextBox>
 
             <TextBox Name="SurnameTextBox" md:HintAssist.Hint="Surname" Style="{StaticResource MaterialDesignOutlinedTextBox}"
                  Padding="3" Margin="4" BorderBrush="#abaaaa" Foreground="#abaaaa" FontSize="15"
                  md:HintAssist.Background="#262626" md:HintAssist.Foreground="#abaaaa"
-                 VerticalAlignment="Center" Grid.Row="0" Grid.Column="1" Text="{Binding AddHall.ScreenDiagonal , UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                 VerticalAlignment="Center" Grid.Row="0" Grid.Column="1" Text="{Binding AddEmployee.Surname , UpdateSourceTrigger=PropertyChanged}"></TextBox>
 
             <TextBox Name="RoleTextBox" md:HintAssist.Hint="Role" Style="{StaticResource MaterialDesignOutlinedTextBox}"
                  Padding="3" Margin="4" BorderBrush="#abaaaa" Foreground="#abaaaa" FontSize="15"
                  md:HintAssist.Background="#262626" md:HintAssist.Foreground="#abaaaa"
-                 VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" Text="{Binding AddHall.Rows , UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                 VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" Text="{Binding AddEmployee.Role , UpdateSourceTrigger=PropertyChanged}"></TextBox>
 
             <TextBox Name="EmailTextBox" md:HintAssist.Hint="Email" Style="{StaticResource MaterialDesignOutlinedTextBox}"
                  Padding="3" Margin="4" BorderBrush="#abaaaa" Foreground="#abaaaa" FontSize="15"
                  md:HintAssist.Background="#262626" md:HintAssist.Foreground="#abaaaa"
-                 VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" Text="{Binding AddHall.SeatsInRow, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                 VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" Text="{Binding AddEmployee.Mail, UpdateSourceTrigger=PropertyChanged}"></TextBox>
 
             <TextBox Name="PuswordRowTextBox" md:HintAssist.Hint="Password" Style="{StaticResource MaterialDesignOutlinedTextBox}"
                  Padding="3" Margin="4" BorderBrush="#abaaaa" Foreground="#abaaaa" FontSize="15"
                  md:HintAssist.Background="#262626" md:HintAssist.Foreground="#abaaaa"
-                 VerticalAlignment="Center" Grid.Row="2" Grid.Column="0" Text="{Binding PremiumRows, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                 VerticalAlignment="Center" Grid.Row="2" Grid.Column="0" Text="{Binding AddEmployee.Password, UpdateSourceTrigger=PropertyChanged}"></TextBox>
             <TextBox  md:HintAssist.Hint="Birthday" Style="{StaticResource MaterialDesignOutlinedTextBox}"
                  Padding="3" Margin="4" BorderBrush="#abaaaa" Foreground="#abaaaa" FontSize="15"
                  md:HintAssist.Background="#262626" md:HintAssist.Foreground="#abaaaa"
-                 VerticalAlignment="Center" Grid.Row="2" Grid.Column="1" Text="{Binding PremiumRows, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-            <Button Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Margin="4" Command="{Binding AddHallCommand}"
+                 VerticalAlignment="Center" Grid.Row="2" Grid.Column="1" Text="{Binding AddEmployee.DayOfBirdh, StringFormat='yyyy-MM-dd', UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <Button Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Margin="4" Command="{Binding AddCommand}" 
                    VerticalAlignment="Center" HorizontalAlignment="Center">Add hall</Button>
         </Grid>
+        <ListBox Grid.Row="1" Name="EmployeesListBox">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="#abaaaa" BorderThickness="2" CornerRadius="5">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="70"></ColumnDefinition>
+                                <ColumnDefinition Width="90"></ColumnDefinition>
+                                <ColumnDefinition Width="70"></ColumnDefinition>
+                                <ColumnDefinition Width="100"></ColumnDefinition>
+                                <ColumnDefinition Width="50"></ColumnDefinition>
+                                <ColumnDefinition ></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0" Grid.Column="0" FontSize="15" Foreground="#abaaaa">Name:</Label>
+                            <Label Grid.Row="0" Grid.Column="1" FontSize="15" Foreground="#abaaaa" Content="{Binding Name}" ></Label>
+                            <Label Grid.Row="1" Grid.Column="0" FontSize="15" Foreground="#abaaaa">Surname:</Label>
+                            <Label Grid.Row="1" Grid.Column="1" FontSize="15" Foreground="#abaaaa" Content="{Binding Surname}" ></Label>
+                            
+                            <Label Grid.Row="0" Grid.Column="2" FontSize="15" Foreground="#abaaaa">Role:</Label>
+                            <Label Grid.Row="0" Grid.Column="3" FontSize="15" Foreground="#abaaaa" Content="{Binding Role}" ></Label>
+                            <Label Grid.Row="1" Grid.Column="2" FontSize="15" Foreground="#abaaaa">Birthday:</Label>
+                            <Label Grid.Row="1" Grid.Column="3" FontSize="15" Foreground="#abaaaa" Content="{Binding DayOfBirdh,StringFormat='yyyy-MM-dd'}" ></Label>
+
+                            <Label Grid.Row="0" Grid.Column="4" FontSize="15" Foreground="#abaaaa">Email:</Label>
+                            <Label Grid.Row="0" Grid.Column="5" FontSize="15" Foreground="#abaaaa" HorizontalAlignment="Left" Content="{Binding Mail}"></Label>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </Page>

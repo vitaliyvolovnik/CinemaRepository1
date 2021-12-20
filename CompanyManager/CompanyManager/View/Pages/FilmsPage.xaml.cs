@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CompanyManager.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,14 @@ namespace CompanyManager.View.Pages
     /// </summary>
     public partial class FilmsPage : Page
     {
-        public FilmsPage()
+        private readonly FilmViewModel _filmViewModel;
+        public FilmsPage(FilmViewModel model)
         {
             InitializeComponent();
+            this._filmViewModel = model;
+            this.DataContext = this._filmViewModel;
+            FilmListBox.ItemsSource = _filmViewModel.Films;
+
         }
     }
 }
