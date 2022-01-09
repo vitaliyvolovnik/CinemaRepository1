@@ -22,6 +22,8 @@ namespace CompanyManager.ViewModel
         private Page? employeePage;
         private Page? filmPage;
         private Page? sessionPage;
+        private Page? ticketPage;
+        private Page? changePassPage;
         public MainViewModel()
         {
 
@@ -92,7 +94,34 @@ namespace CompanyManager.ViewModel
             CurentPage = sessionPage;
         }
         #endregion
+        #region Ticket
+        private ICommand ticketPageCommand;
+        public ICommand TicketPageCommand
+        {
+            get { if (ticketPageCommand == null) ticketPageCommand = new RelayCommand(SetTicketPageExecute, DefaultCanExecute); return ticketPageCommand; }
+        }
+        private void SetTicketPageExecute(object obj)
+        {
+            if (ticketPage == null) { var viewModel= App.provider.GetService<TicketViewModel>();
+                viewModel.CurrentWorker = currentUser;
+                ticketPage = new TicketsPage(viewModel);
+            };
+            CurentPage = ticketPage;
+        }
+        #endregion
+        #region ChangePass
+        private ICommand changePassPageCommand;
+        public ICommand ChangePassPageCommand
+        {
+            get { if (changePassPageCommand == null) changePassPageCommand = new RelayCommand(SetPasswordPageExecute, DefaultCanExecute); return changePassPageCommand; }
+        }
+        private void SetPasswordPageExecute(object obj)
+        {
 
+            if (changePassPage == null) changePassPage = App.provider.GetService<ChangePassPage>();
+            CurentPage = changePassPage;
+        }
+        #endregion
 
 
 

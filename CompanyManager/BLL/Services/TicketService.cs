@@ -15,27 +15,30 @@ namespace BLL.Services
         {
             this.bookingRepository = bookingRepository;
         }
-        public async Task<bool> BookingTicketAsync(Booking booking)
+        public async Task<bool> AddBookingAsync(Booking booking)
         {
             var list = (await bookingRepository.FindBuConditionAsync(x => x.Seat.Row == booking.Seat.Row &&
                                                         x.Seat.SeatInRow == booking.Seat.SeatInRow &&
                                                         x.Session.Id == booking.Session.Id)).ToList();
             if (list.Count == 1)
             {
-                return await bookingRepository.ChangeUserAsync(booking);
+                return false;
             }
             await bookingRepository.CreateAsync(booking);
             return true;
         }
         public async Task<bool> PaidTicketAsync(Booking booking)
         {
-
-            return await bookingRepository.PaidBookingAsync(booking);
+            return await bookingRepository.BookingOrPaidAsync(booking);
         }
         public async Task<bool> CanselTicket(Booking booking)
         {
             return await bookingRepository.CanselBookingAsync(booking);
 
+        }
+        public async Task<bool> BookingTicketAsync(Booking booking)
+        {
+            return await bookingRepository.BookingOrPaidAsync(booking);
         }
         public async Task<List<Booking>> ReturnBySessionTicket(Session session)
         {

@@ -9,6 +9,50 @@
       Title="TicketsPage">
 
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="35"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition ></ColumnDefinition>
+                <ColumnDefinition ></ColumnDefinition>
+                
+            </Grid.ColumnDefinitions>
+            <ComboBox Foreground="#abaaaa" Name="FilmComboBox"  ItemsSource="{Binding Sessions}" Grid.Column="0" 
+                      Margin="5,0,5,0" SelectedItem="{Binding CurrentSession}"
+                      FontSize="15" BorderBrush="#abaaaa" VerticalAlignment="Center"/>
+            <Button Grid.Column="1" Command="{Binding SetCommand}"
+                    HorizontalAlignment="Center">Select Session</Button>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="110"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="100"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Foreground="#abaaaa"
+                               FontSize="15">Film:</Label>
+            <Label Grid.Column="1" Foreground="#abaaaa" HorizontalAlignment="Left"
+                               FontSize="15" Content="{Binding CurrentSession.Film.Name,UpdateSourceTrigger=PropertyChanged}" ></Label>
+
+            <Label Grid.Column="2" Foreground="#abaaaa"
+                               FontSize="15">Hall namber:</Label>
+            <Label Grid.Column="3" Foreground="#abaaaa" HorizontalAlignment="Left"
+                               FontSize="15" Content="{Binding CurrentSession.Hall.HallNumber,UpdateSourceTrigger=PropertyChanged}"></Label>
+
+            <Label Grid.Column="4" Foreground="#abaaaa"
+                               FontSize="15">Start time:</Label>
+            <Label Grid.Column="5" Foreground="#abaaaa" HorizontalAlignment="Left"
+                               FontSize="15" Content="{Binding CurrentSession.StartTime,UpdateSourceTrigger=PropertyChanged}"></Label>
+
+        </Grid>
+        <Border Name="SeatGrid" Grid.Row="2">
+            <ContentControl Content="{Binding CurrentGrid}"> </ContentControl>
+        </Border>
     </Grid>
 </Page>

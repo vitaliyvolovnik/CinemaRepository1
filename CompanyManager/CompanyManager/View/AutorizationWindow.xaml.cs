@@ -25,11 +25,11 @@ namespace CompanyManager.View
     {
         AutorizationService autorizationService;
         public Employee employee; 
-        public AutorizationWindow(AutorizationService service,Employee employee)
+        public AutorizationWindow(AutorizationService service)
         {
             InitializeComponent();
             this.autorizationService = service;
-            this.employee = employee;
+           
         }
 
         private async void LoginBtn_Click(object sender, RoutedEventArgs e)
@@ -37,15 +37,7 @@ namespace CompanyManager.View
             var res = await autorizationService.AutorizationAsync(MailTextBox.Text, PasswordPasswordBox.Password);
             if (res == null) return;
             if (res.isFire) return;
-            employee.Bookings = res.Bookings;
-            employee.DayOfBirdh = res.DayOfBirdh;
-            employee.Id = res.Id;
-            employee.isFire = res.isFire;
-            employee.Mail = res.Mail;
-            employee.Name = res.Name;
-            employee.Password = res.Password;
-            employee.Role = res.Role;
-            employee.Surname = res.Surname;
+            this.employee = res; ;
             this.DialogResult = true;
             this.Close();
             

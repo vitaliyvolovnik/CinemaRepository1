@@ -1,0 +1,20 @@
+﻿<Window x:Class="CompanyManager.View.СhooseVariant"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CompanyManager.View"
+        xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="СhooseVariant" Height="220" Width="300" Background="#232323">
+    <StackPanel>
+        <Label HorizontalAlignment="Center" Foreground="#abaaaa" 
+               FontSize="20" Name="Text"></Label>
+        <Button Name="BookingBtn" Width="200" FontSize="20" HorizontalAlignment="Center"
+                Margin="5" Height="40" Click="BookingBtn_Click">To book</Button>
+        <Button Name="PaidBtn" FontSize="20" HorizontalAlignment="Center"
+                Margin="5" Height="40" Width="200" Click="PaidBtn_Click">Paid</Button>
+        <Button Name="CancelBtn" FontSize="20" HorizontalAlignment="Center"
+                Margin="5" Height="40" Width="200" Click="CancelBtn_Click">Cancel</Button>
+    </StackPanel>
+</Window>

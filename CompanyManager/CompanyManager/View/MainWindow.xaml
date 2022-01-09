@@ -6,15 +6,16 @@
         xmlns:local="clr-namespace:CompanyManager.View"
         xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d" 
-        Title="MainWindow" Height="480" Width="900" Background="#232323">
+        Title="MainWindow" Height="560" Width="1100" Background="#232323">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="240"></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Grid Grid.Column="0" Background="#222222">
+        <Grid Grid.Column="0" Background="#222222" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="120"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
                 <RowDefinition Height="50"></RowDefinition>
                 <RowDefinition Height="50"></RowDefinition>
                 <RowDefinition Height="50"></RowDefinition>
@@ -45,7 +46,7 @@
                         MouseLeave="Button_MouseLeave" MouseEnter="Button_MouseEnter">
                 <Grid Width="0" Background="#0686bf" Name="Bhrid1"></Grid>
                 <Button Background="{x:Null}" BorderThickness="0" Name="TicketsPageBtn"
-                        Height="50" Width="240">
+                        Height="50" Width="240" Command="{Binding TicketPageCommand}">
                     <StackPanel Orientation="Horizontal" Width="220">
                         <md:PackIcon VerticalAlignment="Center" Kind="Ticket"></md:PackIcon>
                         <Label FontSize="15" Foreground="#abaaaa">Tickets</Label>
@@ -97,13 +98,25 @@
                     </StackPanel>
                 </Button>
             </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Row="6" Height="50" Width="240"
+                        MouseLeave="Button_MouseLeave" Name="PassStackPAnel" MouseEnter="Button_MouseEnter">
+                <Grid Width="0" Background="#0686bf" Name="Bhrid6"></Grid>
+                <Button Background="{x:Null}" BorderThickness="0" Name="ChangePassPageBtn"
+                        Height="50" Width="240" Tag="Bhrid4" Command="{Binding ChangePassPageCommand}"  >
+                    <StackPanel Orientation="Horizontal" Width="220">
+                        <md:PackIcon VerticalAlignment="Center" Kind="Lock"></md:PackIcon>
+                        <Label FontSize="15" Foreground="#abaaaa">Account security</Label>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
         </Grid>
-        <Grid Grid.Column="1">
+        <Grid Grid.Column="1" Name="gGrid">
             <Grid.RowDefinitions>
                 <RowDefinition Height="20"></RowDefinition>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0" Background="#0686bf"></Grid>
+
             <Frame Name="MainPagesFrame" NavigationUIVisibility="Hidden" Grid.Row="1" Content="{Binding CurentPage, UpdateSourceTrigger=PropertyChanged}"></Frame>
         </Grid>
     </Grid>

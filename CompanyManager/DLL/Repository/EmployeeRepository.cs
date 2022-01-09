@@ -48,7 +48,7 @@ namespace DLL.Repository
         public async Task<bool> ChangePasswordAsync(string email, string password, string newPassowrd)
         {
             var emp = this.Entities.Where(x => x.Mail == email && x.Password == password);
-            if (emp.Count() == 1)
+            if (emp.Count() >0)
             {
                 var employee = emp.First();
                 employee.Password = newPassowrd;

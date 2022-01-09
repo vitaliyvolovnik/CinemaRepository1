@@ -13,7 +13,7 @@ namespace DLL.Models
         public string ClientPhoneNumber { get; set; } = "";
         public bool IsPaid { get; set; }
         public Seat Seat { get; set; }
-        public bool IsCansel {get;set;}
+        
 
     }
 }

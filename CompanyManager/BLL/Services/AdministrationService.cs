@@ -59,7 +59,7 @@ namespace BLL.Services
             var sess = (await _sessionRepository.FindBuConditionAsync(x => x.Id == session.Id)).First();
             foreach (var item in sess.Bookings)
             {
-                if ((!item.IsCansel) && item.IsPaid)
+                if ((!item.IsBooking) && item.IsPaid)
                 {
                     if (item.Seat.Type == "Premium") sum += sess.PremiumTiketPrice;
                     else sum += sess.TiketPrice;

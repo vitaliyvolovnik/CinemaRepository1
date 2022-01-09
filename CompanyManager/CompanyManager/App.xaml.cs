@@ -45,7 +45,8 @@ namespace CompanyManager
             collectoin.AddTransient<FilmsPage>();
             collectoin.AddTransient<HallsPage>();
             collectoin.AddTransient<SessionPage>();
-            collectoin.AddTransient<TicketService>();
+            collectoin.AddTransient<TicketsPage>();
+            collectoin.AddTransient<ChangePassPage>();
 
             //ViewModel
             collectoin.AddTransient<HallsViewModel>();
@@ -53,6 +54,8 @@ namespace CompanyManager
             collectoin.AddTransient<MainViewModel>();
             collectoin.AddTransient<FilmViewModel>();
             collectoin.AddTransient<SessionViewModel>();
+            collectoin.AddTransient<TicketViewModel>();
+            collectoin.AddTransient<ChangePassword>();
             
             //Services
             collectoin.AddTransient<TicketService>(); 

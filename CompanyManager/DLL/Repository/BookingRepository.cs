@@ -11,7 +11,8 @@ using System.Threading.Tasks;
 
 namespace DLL.Repository
 {
-    public class BookingRepository : BaseRepository<Booking> { 
+    public class BookingRepository : BaseRepository<Booking>
+    {
         public BookingRepository(CinemaContext f) : base(f) { }
         public override async Task<IEnumerable<Booking>> FindBuConditionAsync(Expression<Func<Booking, bool>> predicate)
         {
@@ -32,7 +33,7 @@ namespace DLL.Repository
                 .ToListAsync()
                 .ConfigureAwait(false);
         }
-        public  async Task<bool> ChangeUserAsync(Booking booking)
+        /*public async Task<bool> ChangeUserAsync(Booking booking)
         {
             var book = this.Entities
                 .Where(x => x.Seat.Row == booking.Seat.Row && x.Seat.SeatInRow == booking.Seat.SeatInRow && x.Session.Id == booking.Session.Id)
@@ -40,9 +41,9 @@ namespace DLL.Repository
             if (book.Count() > 0)
             {
                 var bb = book.First();
-                if (bb.IsCansel)
+                if (!bb.IsBooking)
                 {
-                    bb.IsCansel = false;
+
                     bb.IsPaid = booking.IsPaid;
                     bb.IsBooking = true;
                     bb.Employee = booking.Employee;
@@ -52,7 +53,7 @@ namespace DLL.Repository
                 }
             }
             return false;
-        }
+        }*/
         public async Task<bool> CanselBookingAsync(Booking booking)
         {
             var book = this.Entities
@@ -60,33 +61,38 @@ namespace DLL.Repository
             if (book.Count() > 0)
             {
                 var bb = book.First();
-                if (!bb.IsCansel)
-                { 
+                if (bb.IsBooking)
+                {
                     bb.IsBooking = false;
-                    bb.IsCansel = true;
+                    bb.ClientPhoneNumber = booking.ClientPhoneNumber;
+                    bb.Employee = booking.Employee;
+                    bb.IsPaid = false;
                     await this.SaveChangesAsync();
                     return true;
                 }
             }
             return false;
         }
-        public async Task<bool> PaidBookingAsync(Booking booking)
+        public async Task<bool> BookingOrPaidAsync(Booking booking)
         {
             var book = this.Entities
                .Where(x => x.Seat.Row == booking.Seat.Row && x.Seat.SeatInRow == booking.Seat.SeatInRow && x.Session.Id == booking.Session.Id);
             if (book.Count() > 0)
             {
                 var bb = book.First();
-                if (!bb.IsPaid)
-                {
-                    bb.IsPaid = true;
-                    await this.SaveChangesAsync();
-                    return true;
-                }
+
+
+                bb.IsBooking = true;
+                bb.IsPaid = booking.IsPaid;
+                bb.ClientPhoneNumber = booking.ClientPhoneNumber;
+                await this.SaveChangesAsync();
+                return true;
+
             }
             return false;
         }
 
+
     }
-    
+
 }

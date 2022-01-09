@@ -19,7 +19,7 @@ namespace DLL.Repository
             return await this.Entities
                 .Where(predicate)
                 .Include(x => x.Bookings).ThenInclude(x=>x.Seat)
-                .Include(x => x.Hall)
+                .Include(x => x.Hall).ThenInclude(x => x.Seats)
                 .Include(x => x.Film)
                 .ToListAsync()
                 .ConfigureAwait(false);

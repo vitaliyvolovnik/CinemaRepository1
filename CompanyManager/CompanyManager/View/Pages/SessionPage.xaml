@@ -45,7 +45,7 @@
                  md:HintAssist.Background="#262626" md:HintAssist.Foreground="#abaaaa"
                  VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" Text="{Binding AddSession.PremiumTiketPrice , UpdateSourceTrigger=PropertyChanged}"></TextBox>
             <Button FontSize="15" Grid.Row="3" HorizontalAlignment="Center"
-                    Grid.ColumnSpan="2">
+                    Grid.ColumnSpan="2" Command="{Binding AddSessionCommand}">
                 Create session
             </Button>
         </Grid>

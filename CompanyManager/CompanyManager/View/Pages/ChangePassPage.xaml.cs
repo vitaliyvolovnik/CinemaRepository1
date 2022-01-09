@@ -17,17 +17,17 @@ using System.Windows.Shapes;
 namespace CompanyManager.View.Pages
 {
     /// <summary>
-    /// Interaction logic for TicketsPage.xaml
+    /// Interaction logic for ChangePassPage.xaml
     /// </summary>
-    public partial class TicketsPage : Page
+    public partial class ChangePassPage : Page
     {
-        private readonly TicketViewModel _ticketViewModel;
-        public TicketsPage(TicketViewModel ticketViewModel)
+        private readonly ChangePassword _changePassword;
+        public ChangePassPage(ChangePassword viewModel)
         {
             InitializeComponent();
-            this._ticketViewModel = ticketViewModel;
-            this.DataContext = this._ticketViewModel;
-           
+            this._changePassword = viewModel;
+            this.DataContext = _changePassword;
+            
         }
     }
 }

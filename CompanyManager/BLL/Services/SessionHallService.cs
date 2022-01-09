@@ -47,6 +47,12 @@ namespace BLL.Services
         {
             return (await sessionRepository.FindBuConditionAsync(x=>x.EndTime>DateTime.Now))?.ToList();
         }
-        
+        public async Task<Session> GetSessionWithSeats(Session sess)
+        {
+            var sessions = await sessionRepository.FindBuConditionAsync(x => x.Id > sess.Id);
+            if (sessions.Count() > 0) return sessions.First();
+            return null;
+        }
+
     }
 }

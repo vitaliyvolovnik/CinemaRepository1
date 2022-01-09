@@ -16,6 +16,7 @@ namespace CompanyManager.ViewModel
 
         private readonly FilmService _filmService;
         private readonly SessionHallService _sessionHallService;
+        
         public SessionViewModel(FilmService fService, SessionHallService shService)
         {
             this._filmService = fService;
@@ -32,21 +33,21 @@ namespace CompanyManager.ViewModel
             set { addSession = value; base.OnPropertyChanged("AddSession"); }
         }
         private ICommand addSessionComand;
-        public ICommand AddSessionComand
+        public ICommand AddSessionCommand
         {
             get { if (addSessionComand == null) addSessionComand = new RelayCommand(AddSessionExecute, AddSessionCanExecute); return addSessionComand; }
         }
 
         private bool AddSessionCanExecute(object obj)
         {
-            throw new NotImplementedException();
+            return true;
         }
 
         private async void AddSessionExecute(object obj)
         {
-
-            await _sessionHallService.AddSsesionAsync(AddSession);
-
+            
+            var session = await _sessionHallService.AddSsesionAsync(AddSession);
+            if (session == null) return;
             AddSession = new();
 
         }

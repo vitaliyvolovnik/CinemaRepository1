@@ -32,6 +32,7 @@ namespace CompanyManager.View
             InitializeComponent();
             this._model = App.provider.GetService<MainViewModel>();
             this.DataContext = _model;
+            
 
         }
         private void Button_MouseLeave(object sender, MouseEventArgs e)

@@ -14,6 +14,10 @@ namespace DLL.Models
         public DateTime EndTime { get; set; }
         public float TiketPrice { get; set; }
         public float PremiumTiketPrice { get; set; }
+        public override string ToString()
+        {
+            return Id + Film.Name + Hall.HallNumber;
+        }
 
 
     }
