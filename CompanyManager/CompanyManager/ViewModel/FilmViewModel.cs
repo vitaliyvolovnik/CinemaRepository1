@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -38,10 +39,18 @@ namespace CompanyManager.ViewModel
         }
         public async void LoadFilm()
         {
-            var films = await _filmService.GetFilms();
-            foreach (var item in films)
+            try
             {
-                Films.Add(item);
+                var films = await _filmService.GetFilms();
+                foreach (var item in films)
+                {
+                    Films.Add(item);
+                }
+            }
+            catch
+            {
+                Thread.Sleep(600);
+                LoadFilm();
             }
         }
         //Add command

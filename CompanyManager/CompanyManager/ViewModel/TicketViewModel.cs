@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -63,11 +64,19 @@ namespace CompanyManager.ViewModel
 
         private async void LoadSession()
         {
-            var sess = await _sessionHallService.GetAllSessionsAsync();
-            foreach (var item in sess)
+            try
             {
-                Sessions.Add(item);
-                
+                var sess = await _sessionHallService.GetAllNotFinishedSessionsAsync();
+                foreach (var item in sess)
+                {
+                    Sessions.Add(item);
+
+                }
+            }
+            catch
+            {
+                Thread.Sleep(600);
+                LoadSession();
             }
 
         }

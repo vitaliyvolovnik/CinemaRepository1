@@ -33,5 +33,14 @@ namespace DLL.Repository
                 .ToListAsync()
                 .ConfigureAwait(false);
         }
+        public async Task<IEnumerable<Session>> GetAllAsyncNotStartedSession()
+        {
+            return await this.Entities
+               .Include(x => x.Bookings).ThenInclude(x => x.Seat)
+               .Include(x => x.Hall)
+               .Include(x => x.Film).Where(x=>x.StartTime>DateTime.Now)
+               .ToListAsync()
+               .ConfigureAwait(false);
+        }
     }
 }

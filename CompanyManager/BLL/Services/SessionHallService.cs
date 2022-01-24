@@ -45,7 +45,7 @@ namespace BLL.Services
         }
         public async Task<List<Session>> GetAllNotFinishedSessionsAsync()
         {
-            return (await sessionRepository.FindBuConditionAsync(x=>x.EndTime>DateTime.Now))?.ToList();
+            return (await sessionRepository.GetAllAsyncNotStartedSession()).ToList() ;
         }
         public async Task<Session> GetSessionWithSeats(Session sess)
         {

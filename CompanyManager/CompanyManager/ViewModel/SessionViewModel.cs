@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -67,12 +68,21 @@ namespace CompanyManager.ViewModel
         }
         public async void Load()
         {
-            var films = await _filmService.GetFilms();
-            foreach (var item in films)
-                Films.Add(item);
-            var list = await _sessionHallService.GetAllHallsWhithoutSeatsAsync();
-            foreach (var item in list)
-                Halls.Add(item);
+            try
+            {
+                var films = await _filmService.GetFilms();
+                var list = await _sessionHallService.GetAllHallsWhithoutSeatsAsync();
+                foreach (var item in films)
+                    Films.Add(item);
+
+                foreach (var item in list)
+                    Halls.Add(item);
+            }
+            catch
+            {
+                Thread.Sleep(600);
+                Load();
+            }
         }
         
     }

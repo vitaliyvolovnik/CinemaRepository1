@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -30,13 +31,21 @@ namespace CompanyManager.ViewModel
         }
         public async Task LoadHalls()
         {
-            var list = await _sessionHallService.GetAllHallsWhithoutSeatsAsync();
-            foreach (var item in list)
+            try
             {
-                halls.Add(item);
+                var list = await _sessionHallService.GetAllHallsWhithoutSeatsAsync();
+                foreach (var item in list)
+                {
+                    halls.Add(item);
 
+                }
+                Isloaded = true;
             }
-            Isloaded = true;
+            catch
+            {
+                Thread.Sleep(600);
+                LoadHalls();
+            }
         }
         public string PremiumRows
         {

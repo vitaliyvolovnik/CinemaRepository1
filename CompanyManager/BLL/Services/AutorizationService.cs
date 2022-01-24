@@ -17,8 +17,14 @@ namespace BLL.Services
         }
         public async Task<Employee> AutorizationAsync(string email,string password)
         {
-            
-                return (await employeeRepository.FindBuConditionAsync(x => x.Mail == email && x.Password == password))?.First();
+            try
+            {
+                return (await employeeRepository.FindBuConditionAsync(x => x.Mail == email && x.Password == password)).First();
+            }
+            catch
+            {
+                return null;
+            }
            
         }
         public async Task<bool> ChangePasswordAsync(string email,string password,string newPassowrd)

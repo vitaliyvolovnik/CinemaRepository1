@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -18,7 +19,7 @@ namespace CompanyManager.ViewModel
         {
             this._administrationService = service;
             this._employeeService = eService;
-            LoadEmployees();
+            LoadEmployeesAsync();
         }
         //services
         private readonly AdministrationService _administrationService;
@@ -40,14 +41,21 @@ namespace CompanyManager.ViewModel
             get { if (employees == null) employees = new(); return employees; }
         }
         //Load Employee
-        public async void LoadEmployees()
+        public async void LoadEmployeesAsync()
         {
+            try {
             var list = await _employeeService.GetAllWhoWorkAsync();
             foreach (var item in list)
             {
                 Employees.Add(item);
             }
             IsLoadedEmployees = true;
+            }
+            catch
+            {
+                Thread.Sleep(600);
+                LoadEmployeesAsync();
+            }
         }
 
         //Add Command
